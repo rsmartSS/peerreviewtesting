@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="icon" href="https://app.sharpspring.com/favicon.ico" type="image/gif" sizes="16x16">
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+        <link rel="stylesheet" type="text/css" href="vendors/css/grid.css">
+        <link rel="stylesheet" type="text/css" href="vendors/css/ionicons.min.css">
+        <link rel="stylesheet" type="text/css" href="resources/css/style.css">
+        <link href="https://fonts.googleapis.com/css?family=Lato:100,300,300i,400" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+        </script>
+    <title>Support Peer Review</title>
+    </head>
+    <body>
+        <header>
+            <nav>
+                <div class="row">
+                        <img src="resources/img/ss_logo_ps.png" alt="SharpSpring Logo" class="logo">
+                        <ul class="main-nav">
+                            <li><a href="#"></a></li>
+                            <li><a href="#"></a></li>
+                            <li><a href="#"></a></li>
+                            <li><a href="#"></a></li>
+                        </ul>
+
+                </div>
+
+            </nav>
+            <div class="hero-text-box">
+                <h1>Goodbye SILOS.<br> Hello Super Support.</h1>
+                <a class="btn btn-full" id='click' href="#">Get Cases</a>
+                <a class="btn btn-full" id='redirect' href="#">Auth</a>
+            </div>
+
+
+            <div class="load-text-box" id="output">
+
+            </div>
+
+            <script type="text/javascript" id="showTime" >
+
+            <div  id="case">
+
+             <ul class="people_list">
+              {{#each case}}
+               <li><a target="_blank" href="https://sharpspring.zendesk.com/agent/tickets/{{this}}">https://sharpspring.zendesk.com/agent/tickets/{{this}}</a></li>
+              {{/each}}
+              </ul>
+            </div>
+
+
+
+            </script>
+
+
+
+            <!-- <div class="load-text-box">
+              <div class="" id="case">
+
+                              https://sharpspring.zendesk.com/agent/tickets/<span id="case1"></span>
+                              https://sharpspring.zendesk.com/agent/tickets/<span id="case2"></span>
+                              https://sharpspring.zendesk.com/agent/tickets/<span id="case3"></span>
+                              https://sharpspring.zendesk.com/agent/tickets/<span id="case4"></span>
+                              https://sharpspring.zendesk.com/agent/tickets/<span id="case5"></span>
+                              https://sharpspring.zendesk.com/agent/tickets/<span id="case6"></span>
+                              https://sharpspring.zendesk.com/agent/tickets/<span id="case7"></span>
+                              https://sharpspring.zendesk.com/agent/tickets/<span id="case8"></span>
+                              https://sharpspring.zendesk.com/agent/tickets/<span id="case9"></span>
+                              https://sharpspring.zendesk.com/agent/tickets/<span id="case10"></span>
+
+              </div>
+
+            </div> -->
+
+        </header>
+
+
+
+    </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.js"></script>
+
+<script type="text/javascript" src="../js/appzen.js"></script>
+
+</html>

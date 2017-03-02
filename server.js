@@ -51,11 +51,10 @@ const server  = express();
           if (error) throw new Error(error);
            console.log("api queried")
 
+           console.log(body )
 
          })
           // var data = request()
-          console.log(data )
-           res.send()
 
 
 

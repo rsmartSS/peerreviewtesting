@@ -51,7 +51,7 @@ function getTickets(){
           type: 'post',
           url: '/api',
           data: search,
-          success: testCapture,
+          success: zenCall,
           dataType: 'json'
         });
 

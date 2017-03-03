@@ -8,7 +8,6 @@ const server  = express();
 
 
       //middlewares to handle loggging and post body
-      server.use(logger);
       server.use(bodyParser.json()); // support json encoded bodies
       server.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
       server.use(express.static(__dirname+'/public'));

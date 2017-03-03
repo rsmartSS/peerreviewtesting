@@ -31,9 +31,8 @@ const server  = express();
       }
 
       function makeCall(req, res){
-
         console.log('Hey, I caught that info. Sending to api now.')
-        var holding
+
         var url= req.body.url
         var path=req.body.path
         var query= req.body.query
@@ -47,22 +46,24 @@ const server  = express();
              authorization: 'Basic '+api_key } };// YW5kcmEuaXNobWFlbEBzaGFycHNwcmluZy5jb206N0pqXkklb0U=
 
 
-          var data = request(options, function (error, res, body) {
+        request(options, function (error, res, body) {
           if (error) throw new Error(error);
-           console.log("api queried")
+          // console.log("api queried")
 
-           console.log(body )
+         }).pipe(res)
 
-         })
+
+
+
+        //  .on('data', function(data){
+        //        collectBufffer += data
+        //   }).on('end', function(){
+         //
+        //     console.log('stream completed')
+        //   })
+
+          // console.log(collectBufffer)
           // var data = request()
-
-
-
-
-
-
-
-
 
 
         //all comments are what variables should be exactly
@@ -143,6 +144,34 @@ const server  = express();
 
 
 
+      }
+
+      function grabData(req){
+
+        var url= req.body.url
+        var path=req.body.path
+        var query= req.body.query
+
+        var options = { method: 'GET',
+          url: url ,//'https://sharpspring.zendesk.com/api/v2/search.json/'
+          qs: { query: query  },//'type:ticket created<2017-02-15 created>2017-02-13 status>=solved'
+          headers:
+           { //'postman-token': 'b1fb188a-8f33-1d57-d44b-f98bc90ab4e9',
+             'cache-control': 'no-cache',
+             authorization: 'Basic '+api_key } };// YW5kcmEuaXNobWFlbEBzaGFycHNwcmluZy5jb206N0pqXkklb0U=
+
+
+        request(options, function (error, res, body) {
+          if (error) throw new Error(error);
+          // console.log("api queried")
+
+         }).on('data', function(data){
+               collectBufffer += data
+          }).on('end', function(){
+
+            console.log('stream completed')
+          })
+          return collectBufffer
       }
 
       function listenCallBack(){

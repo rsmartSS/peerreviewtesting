@@ -98,8 +98,11 @@ h2:after {
 .people_list a {
 
   text-decoration: none;
+  color: #fff;
+}
 
-
+.people_list li{
+  margin-bottom: 5px;
 }
 /* ----- ICONS ----- */
 
@@ -178,10 +181,12 @@ header{
     top: 50%;
     left: 70%;
     transform: translate(-50%, -50%);
-    background-color: #fff;
+    -webkit-box-shadow: -2px 1px 14px 9px rgba(0,0,0,0.44);
+    -moz-box-shadow: -2px 1px 14px 9px rgba(0,0,0,0.44);
+    box-shadow: -2px 1px 14px 9px rgba(0,0,0,0.44);
   }
   #case{
-    margin:20px;
+    margin:10px;
   }
 
 .logo {

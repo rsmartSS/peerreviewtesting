@@ -32,8 +32,11 @@ var beforeDate = yy + "-" + mm + "-" + dd; //2017-02-22
 
 //build out url, currently will be hard set for testing
 function buildQuery(){
-  //type + " created<" + beforeDate + " created>" + afterDate + " " + status},
-  var queryString = 'type:ticket created<2017-02-15 created>2017-02-13 status>=solved'//'type:ticket+created<2017-02-15+created>2017-02-13+status>=solved'
+  //type + " created<" + beforeDate + " created>" + afterDate + " " + status
+  type + " created<" + beforeDate + " created>" + afterDate + " " + status
+
+  var queryString = type + " created<" + beforeDate + " created>" + afterDate + " " + status
+//'type:ticket created<2017-02-15 created>2017-02-13 status>=solved'//'type:ticket+created<2017-02-15+created>2017-02-13+status>=solved'
   console.log( 'query build completed') //used for testing url structure
   return  queryString
 }

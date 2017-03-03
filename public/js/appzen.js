@@ -20,7 +20,7 @@ var lwYY = lastWeek.getFullYear();
 
 //Search query variables
 var type = 'type:ticket';
-var status = 'status>=closed';
+var status = 'status>=solved';
 var afterDate = lwYY + "-" + lwMM + "-" + lwDD; // 2017-02-15
 var beforeDate = yy + "-" + mm + "-" + dd; //2017-02-22
 

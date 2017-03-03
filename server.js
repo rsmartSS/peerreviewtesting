@@ -1,6 +1,5 @@
 const express = require('express')
 const request = require('request');
-const logger = require('morgan')('dev');
 const bodyParser = require('body-parser');
 var http = require("https");
 const api_key = require('./public/config/config.js');

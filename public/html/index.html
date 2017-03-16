@@ -1,79 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <link rel="icon" href="https://app.sharpspring.com/favicon.ico" type="image/gif" sizes="16x16">
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-        <link rel="stylesheet" type="text/css" href="vendors/css/grid.css">
-        <link rel="stylesheet" type="text/css" href="vendors/css/ionicons.min.css">
-        <link rel="stylesheet" type="text/css" href="resources/css/style.css">
-        <link href="https://fonts.googleapis.com/css?family=Lato:100,300,300i,400" rel="stylesheet">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
-        </script>
-    <title>Support Peer Review</title>
-    </head>
-    <body>
-        <header>
-            <nav>
-                <div class="row">
-                        <img src="resources/img/ss_logo_ps.png" alt="SharpSpring Logo" class="logo">
-                        <ul class="main-nav">
-                            <li><a href="#"></a></li>
-                            <li><a href="#"></a></li>
-                            <li><a href="#"></a></li>
-                            <li><a href="#"></a></li>
-                        </ul>
+<head>
 
-                </div>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-            </nav>
-            <div class="hero-text-box">
-                <h1>Goodbye SILOS.<br> Hello Super Support.</h1>
-                <a class="btn btn-full" id='click' href="#">Get Cases</a>
-                <a class="btn btn-full" id='test' href="#">test</a>
+    <title>Bare - Start Bootstrap Template</title>
+    <link rel="icon" href="https://app.sharpspring.com/favicon.ico" type="image/gif" sizes="16x16">
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,300i,400" rel="stylesheet">
+
+    <!-- Bootstrap Core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+  <link rel="stylesheet" type="text/css" href="resources/css/master.css">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    <!-- Page Content -->
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-12 text-center">
+              <img src="resources/img/ss_logo_ps.png" alt="SharpSpring Logo" class="logo">
+
+
             </div>
-
-
-            <div class="load-text-box" id="output">
-
+        </div>
+        <!-- /.row -->
+        <div class="row">
+          <div class="col-lg-6 text-left">
+            <div class="box">
+              <h1>Goodbye SILOS.<br> Hello Super Support.</h1>
+              <a class="btn btn-full" id='click' href="#">Get Cases</a>
+              <a class="btn btn-full" id='test' href="#">test</a>
             </div>
-            <div class="row">
-              <div class="load-text-box2" id="output2">
+          </div>
+          <div class="col-lg-6">
+            <div class="box2">
+              <div class="load-text-box" id="output">
 
               </div>
             </div>
+          </div>
 
-            <script type="text/javascript" id="showTime" >
+        </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <center>
+              <div class="chossen" id="output2"></div>
 
-            <div  id="case">
+            </center>
+          </div>
+        </div>
 
-             <ul id="caseList" class="people_list">
-              {{#each case}}
-               <li><a target="" id="{{this}}" href="#">https://sharpspring.zendesk.com/agent/tickets/{{this}}</a></li>
-              {{/each}}
-              </ul>
-            </div>
-            </script>
+    </div>
+    <!-- /.container -->
+      <!-- handlebar cases -->
+    <script type="text/javascript" id="showTime" >
+
+    <div  id="case">
+
+     <ul id="caseList" class="people_list">
+      {{#each case}}
+       <li><a target="" id="{{this}}" href="#">https://sharpspring.zendesk.com/agent/tickets/{{this}}</a></li>
+      {{/each}}
+      </ul>
+    </div>
+    </script>
+    <!-- handlbar chossen case -->
+    <script type="text/javascript" class="display_case" id="part2">
+       <p>You have chossen{{case}}</p>
+
+    </script>
+
+
+    <!-- jQuery Version 1.11.1 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/appzen.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.js"></script>
 
 
 
+</body>
 
-
-            <!-- step2 -->
-            <script type="text/javascript" class="display_case" id="part2">
-               <p>You have chossen{{case}}</p>
-
-            </script>
-
-
-
-        </header>
-
-
-
-    </body>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.js"></script>
-
-<script type="text/javascript" src="../js/appzen.js"></script>
 
 </html>

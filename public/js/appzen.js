@@ -89,6 +89,8 @@ function zenCall(data){
 
 };
 
+
+
 //sorting function to grab 5 random cases
 function xpat(allDat){
    console.log('xpat is running and has data')
@@ -106,6 +108,28 @@ function xpat(allDat){
    return caseIDArray
 }
 
+//part 2
+$('#test').on('click',function(event){
+   console.log('hello',event.target.nodeName)
+})
+$('#output').on('click', function(event){
+     var caseid =event.target.id
+    console.log('hello',caseid)
+    doit(caseid)
+  })
+function doit(data){
+  console.log('I made it ')
+
+  $('#output').hide()
+  var caseId ={ case: data} 
+  var source = $('#part2').html()
+  var template = Handlebars.compile(source)
+  var html = template(caseId)
+
+  $('#output2').html(html);
+
+
+}
 
 
 

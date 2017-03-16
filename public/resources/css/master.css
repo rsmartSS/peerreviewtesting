@@ -1,0 +1,88 @@
+body {
+    padding-top: 70px;
+    /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
+  background-size: cover;
+  background-position: center;
+  height: 100%;
+  font-family: 'Lato', 'Arial', sans-serif !important;
+  font-size: 20px !important;
+  font-weight: 300 !important;
+  text-rendering: optimizeLegibility;
+}
+.row{
+  margin-bottom: 30px;
+}
+.logo{
+  width: 55%;
+}
+.box{
+  width: 400px;
+  height: 200px;
+   color: #fff;
+
+}
+.box h1{
+  font-family: 'Lato', 'Arial', sans-serif !important;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 300 !important;
+  text-rendering: optimizeLegibility;
+}
+.box2{
+  width: 400px;
+  height: auto;
+
+
+
+}
+.load-text-box{
+  width: 400px;
+  height: 400px;
+  -webkit-box-shadow: -2px 1px 14px 9px rgba(0,0,0,0.44);
+  -moz-box-shadow: -2px 1px 14px 9px rgba(0,0,0,0.44);
+  box-shadow: -2px 1px 14px 9px rgba(0,0,0,0.44);
+}
+
+
+/*button styling*/
+.btn:link,
+.btn:visited {
+    display: inline-block;
+    padding: 10px 30px;
+    font-weight: 300;
+    text-decoration: none;
+    border-radius: 200px;
+    transition: background-color 0.2s, border 0.2s, color 0.2s;
+
+}
+
+.btn-full:link,
+.btn-full:visited {
+    background-color: ghostwhite color: #84C340;
+    border: 1px solid #84C340;
+    color: #fff;
+    margin-right: 15px;
+}
+
+.btn-ghost:link,
+.btn-ghost:visited {
+    border: 1px solid #84C340;
+    color: #84C340;
+}
+
+.btn:hover,
+.btn:active {
+    background-color: #84C340;
+}
+
+.btn-full:hover,
+.btn-full:active {
+    border: 1px solid #84C340;
+}
+
+.btn-ghost:hover,
+.btn-ghost:active {
+    border: 1px solid #84C340;
+    color: #fff;
+}

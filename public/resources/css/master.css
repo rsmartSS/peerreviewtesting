@@ -37,13 +37,22 @@ body {
 
 }
 .load-text-box{
-  width: 400px;
+  width: 500px;
   height: 400px;
   -webkit-box-shadow: -2px 1px 14px 9px rgba(0,0,0,0.44);
   -moz-box-shadow: -2px 1px 14px 9px rgba(0,0,0,0.44);
   box-shadow: -2px 1px 14px 9px rgba(0,0,0,0.44);
 }
+.load-text-box ul{
+  list-style: none;
+  padding-left: 20px;
+}
 
+.load-text-box a{
+  text-decoration: none;
+  color: #fff;
+
+}
 
 /*button styling*/
 .btn:link,

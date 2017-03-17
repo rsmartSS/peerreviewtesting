@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Bare - Start Bootstrap Template</title>
+    <title>Peer Review</title>
     <link rel="icon" href="https://app.sharpspring.com/favicon.ico" type="image/gif" sizes="16x16">
 
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,300i,400" rel="stylesheet">
@@ -41,14 +41,14 @@
         </div>
         <!-- /.row -->
         <div class="row">
-          <div class="col-lg-6 text-left">
+          <div class="col-lg-6 col-md-6 text-left">
             <div class="box">
               <h1>Goodbye SILOS.<br> Hello Super Support.</h1>
               <a class="btn btn-full" id='click' href="#">Get Cases</a>
               <a class="btn btn-full" id='test' href="#">test</a>
             </div>
           </div>
-          <div class="col-lg-6">
+          <div class="col-lg-6 col-md-6">
             <div class="box2">
               <div class="load-text-box" id="output">
 
@@ -82,7 +82,10 @@
     </script>
     <!-- handlbar chossen case -->
     <script type="text/javascript" class="display_case" id="part2">
-       <p>You have chossen{{case}}</p>
+    {{#each comment }}
+      <p style="color:#fff;">{{this}}</p>
+    {{/each}}
+
 
     </script>
 

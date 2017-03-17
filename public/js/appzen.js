@@ -109,28 +109,57 @@ function xpat(allDat){
 }
 
 //part 2
-$('#test').on('click',function(event){
-   console.log('hello',event.target.nodeName)
-})
+//on click the  case number is collceted and sent to the function to build the display
 $('#output').on('click', function(event){
-     var caseid =event.target.id
-    console.log('hello',caseid)
-    doit(caseid)
+    var caseid =event.target.id
+    singleCase(caseid)
   })
+
+//sends
+function singleCase(caseid){
+    console.log("Collecting single case")
+     var query = {
+              id :caseid
+          }
+
+    $.ajax({
+          type: 'post',
+          url: '/api2',
+          data: query,
+          success: doit,
+          dataType: 'json'
+        });
+}
+
+
+
+//this will be called by another function when case information is colected
 function doit(data){
-  console.log('I made it ')
+  var comments = data.comments
+  var total = data.comments.length
+  var fullthread = []
+  console.log('I made it ', comments)
 
-  $('#output').hide()
-  var caseId ={ case: data} 
-  var source = $('#part2').html()
-  var template = Handlebars.compile(source)
-  var html = template(caseId)
+  for (var x = 0; x < total; x++){
+      fullthread.push(comments[x].body)
+  }
+  showTime2(fullthread)
 
-  $('#output2').html(html);
+
 
 
 }
+ function showTime2(data){
 
+
+
+   var caseInfo ={ comment: data}
+   var source = $('#part2').html()
+   var template = Handlebars.compile(source)
+   var html = template(caseInfo)
+
+   $('#output2').html(html);
+ }
 
 
 

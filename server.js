@@ -80,7 +80,6 @@ const dbURl = 'mongodb://127.0.0.1:27017/myproject';
       //deals with form data
       function reviewResponse(req, res ){
           var formData = req.body
-          console.log(formData)
           MongoClient.connect(dbURl, function(err, db) {
             assert.equal(null, err);
             //function goes here to write to database
@@ -97,13 +96,13 @@ const dbURl = 'mongodb://127.0.0.1:27017/myproject';
 
       //sends information to collection
       function insertDocuments(db , data, callback){
-
+        var average= mathWork(data)
         //call current collection
         var collection = db.collection('myDocuments')
 
         //add record TODO:add variables references
-        collection.insertOne({email: "email" , name: 'name', reviewedCase: 'case', reveiwedName: 'agentName', effort: 0, knowledge: 0, softskill:0, overall: 0, comment: "string string"},
-        //handles errrot and does sopme minor checking for issues
+        collection.insertOne({email: data.email , firstName: data.firstname, lastName:data.lastname, reveiwedName: data.Rname, Interpatation:data.interpatation ,effort: data.Effort, knowledge: data.knowledge, softskill: data.soft_skills, overall: average, comment:data.reviewComment},
+        //handles error and does sopme minor checking for issues
         function(err, result) {
            assert.equal(err, null);
            assert.equal(1, result.result.n);
@@ -113,6 +112,19 @@ const dbURl = 'mongodb://127.0.0.1:27017/myproject';
 
          });
 
+      }
+
+      //calculates average of all response
+      function mathWork(data){
+        var interp = parseInt(data.interpatation),
+             knowledge =   parseInt(data.knowledge),
+             effort = parseInt(data.Effort),
+             skills =parseInt(data.soft_skills)
+        var total = interp + knowledge + effort + skills
+        var average = total / 4
+          console.log("avg",average)
+          console.log("total", total)
+          return average
       }
 
      //logs out to console

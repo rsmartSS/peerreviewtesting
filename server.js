@@ -1,9 +1,12 @@
 const express = require('express')
 const request = require('request');
 const bodyParser = require('body-parser');
-var http = require("https");
+const http = require("https");
 const api_key = require('./public/config/config.js');
 const server  = express();
+const MongoClient = require('mongodb').MongoClient;
+const assert = require('assert');
+const dbURl = 'mongodb://127.0.0.1:27017/myproject';
 
 
 
@@ -18,10 +21,11 @@ const server  = express();
       server.get('/', home);
       server.post('/api',makeCall);
       server.post('/api2', commentUser);
+      server.post('/reviewed', reviewResponse)
       server.listen(server.get('port'), listenCallBack);
 
 
-      //what runns things sends index file when called
+      //sends index file when called
       function home( req, res){
         res.sendFile('/html/index.html',{root:__dirname+'/public'});
       }
@@ -69,6 +73,45 @@ const server  = express();
               // console.log("api queried", body) for testing
 
              }).pipe(res)
+
+      }
+
+
+      //deals with form data
+      function reviewResponse(req, res ){
+          var formData = req.body
+          console.log(formData)
+          MongoClient.connect(dbURl, function(err, db) {
+            assert.equal(null, err);
+            //function goes here to write to database
+
+            console.log("Connected successfully to server");
+            insertDocuments(db, formData, function(){
+                db.close();
+            });
+
+          });
+
+      }
+
+
+      //sends information to collection
+      function insertDocuments(db , data, callback){
+
+        //call current collection
+        var collection = db.collection('myDocuments')
+
+        //add record TODO:add variables references
+        collection.insertOne({email: "email" , name: 'name', reviewedCase: 'case', reveiwedName: 'agentName', effort: 0, knowledge: 0, softskill:0, overall: 0, comment: "string string"},
+        //handles errrot and does sopme minor checking for issues
+        function(err, result) {
+           assert.equal(err, null);
+           assert.equal(1, result.result.n);
+           assert.equal(1, result.ops.length);
+           console.log("Inserted 1 document into the collection");
+           callback(result);
+
+         });
 
       }
 

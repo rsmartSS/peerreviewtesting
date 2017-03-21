@@ -45,7 +45,6 @@
             <div class="box">
               <h1>Goodbye SILOS.<br> Hello Super Support.</h1>
               <a class="btn btn-full" id='click' href="#">Get Cases</a>
-              <a class="btn btn-full" id='test' href="#">test</a>
             </div>
           </div>
           <div class="col-lg-6 col-md-6">
@@ -62,11 +61,13 @@
             <center>
               <div class="chossen" id="output2"></div>
 
+
             </center>
           </div>
         </div>
+     </div>
+        <!-- this is all going in the Handlebars bit -->
 
-    </div>
     <!-- /.container -->
       <!-- handlebar cases -->
     <script type="text/javascript" id="showTime" >
@@ -82,9 +83,76 @@
     </script>
     <!-- handlbar chossen case -->
     <script type="text/javascript" class="display_case" id="part2">
+
+
+     <div class="commentHolder">
     {{#each comment }}
-      <p style="color:#fff;">{{this}}</p>
+      <p style="color:#fff;" class="comments">{{this}}</p>
     {{/each}}
+    </div>
+    <div class="row">
+
+     <center>
+
+      <div class="response">
+        <h2>You are reveiwng <u>{{agent}}</u> Case</h2>
+        <p>{{email}}</p>
+
+       <form class="reviewForm" action="/reviewed" method="post">
+        <fieldset id="userinfo">
+           <label for="interpatation">First Name</label>
+           <input type="text" name="firstname"><br/>
+           <label for="last_name">Last Name</label>
+           <input type="text" name="lastname"><br/>
+        </fieldset>
+        <fieldset id="interpatation">
+          <label for="interpatation">Interpatation</label>
+          <span>1</span><input type="radio" checked id="1" name="interpatation" value="1">
+          <span>2</span><input type="radio" checked id="2" name="interpatation" value="2">
+          <span>3</span><input type="radio" checked id="3" name="interpatation" value="3">
+          <span>4</span><input type="radio" checked id="4" name="interpatation" value="4">
+          <span>5</span><input type="radio" checked id="5" name="interpatation" value="5">
+        </fieldset>
+        <fieldset id="effort">
+          <label for="effort">Effort</label>
+          <span>1</span><input type="radio" checked id="1" name="Effort" value="1">
+          <span>2</span><input type="radio" checked id="2" name="Effort" value="2">
+          <span>3</span><input type="radio" checked id="3" name="Effort" value="3">
+          <span>4</span><input type="radio" checked id="4" name="Effort" value="4">
+          <span>5</span><input type="radio" checked id="5" name="Effort" value="5">
+        </fieldset>
+        <fieldset id="knowledge">
+          <label for="knowledge">Knowledge</label>
+          <span>1</span><input type="radio" checked id="1" name="knowledge" value="1">
+          <span>2</span><input type="radio" checked id="2" name="knowledge" value="2">
+          <span>3</span><input type="radio" checked id="3" name="knowledge" value="3">
+          <span>4</span><input type="radio" checked id="4" name="knowledge" value="4">
+          <span>5</span><input type="radio" checked id="5" name="knowledge" value="5">
+        </fieldset>
+        <fieldset id="soft_skills">
+          <label for="soft_skills">Soft Skills</label>
+          <span>1</span><input type="radio" checked id="1" name="soft_skils" value="1">
+          <span>2</span><input type="radio" checked id="2" name="soft_skils" value="2">
+          <span>3</span><input type="radio" checked id="3" name="soft_skils" value="3">
+          <span>4</span><input type="radio" checked id="4" name="soft_skils" value="4">
+          <span>5</span><input type="radio" checked id="5" name="soft_skils" value="5">
+        </fieldset>
+        <fieldset>
+          <label for="reveiewComment">Enter your Thoughts on the handling of the case below:</label>
+          <textarea name="reviewComment" rows="8" cols="80"></textarea>
+        </fieldset>
+        <fieldset>
+        <input type="hidden" name="Rname" value="{{agent}}" />
+        <input type="hidden" name="Remail" value="{{email}}" />
+        </fieldset>
+        <p>
+          <button type="submit" class="btn btn-full" name="submit">Submit</button>
+        </p>
+      </form>
+      </div>
+      </center>
+     </div>
+
 
 
     </script>

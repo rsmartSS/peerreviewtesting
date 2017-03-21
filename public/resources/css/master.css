@@ -95,3 +95,45 @@ body {
     border: 1px solid #84C340;
     color: #fff;
 }
+
+
+/*styling for comments */
+.comments{
+  color: #fff;
+  text-align: left;
+}
+.commentHolder{
+  display: block;
+   border: #777 1px solid;
+   padding:10px;
+}
+
+/*styling for response*/
+.response{
+
+  display: block;
+  text-align: left;
+  width: 700px;
+}
+.response h2 {
+  color:#fff;
+}
+.response p{
+  color: #fff;
+}
+.reviewForm label{
+  color:#fff;
+}
+fieldset span {
+  margin-right: 5px;
+  margin-left: 5px;
+  color: #fff;
+}
+button{
+  color: #000;
+}
+
+
+textarea, input{
+  color: #000 !important;
+}

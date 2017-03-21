@@ -1,7 +1,4 @@
 $(document).ready(function($){
-//Globals
-
-
 //base uri
 const baseUrl = 'https://sharpspring.zendesk.com/api/v2/search.json/'
 // const path = '/api/v2/search.json/' no longer necesarry
@@ -10,7 +7,6 @@ const baseUrl = 'https://sharpspring.zendesk.com/api/v2/search.json/'
 var today = new Date();
 //Get Last Week's date, this takes care of all conditionals involving months
 var lastWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7);
-
 var dd = today.getDate();
 var mm = today.getMonth() + 1; //January is 0!
 var yy = today.getFullYear();
@@ -30,7 +26,7 @@ var beforeDate = yy + "-" + mm + "-" + dd; //2017-02-22
  $('#click').on('click', getTickets)
 
 
-//build out url, currently will be hard set for testing
+//build out url
 function buildQuery(){
   //type + " created<" + beforeDate + " created>" + afterDate + " " + status
   type + " created<" + beforeDate + " created>" + afterDate + " " + status
@@ -41,7 +37,7 @@ function buildQuery(){
   return  queryString
 }
 
-//firing dreaded ajax call
+//Makes first api call to collect csases
 function getTickets(){
 
     var search = {
@@ -58,19 +54,14 @@ function getTickets(){
           dataType: 'json'
         });
 
-
-
-
 }
-function testCapture(data){
-  console.log('all I want is data here',data)
-}
+
 //logs errors to console
 function errorHandler(err){
     console.log('Well that sucks',err);
 }
 
-// When Call is completed this runs
+// When Call is completed this runs calls xpat to randomly select 10 cases
 function zenCall(data){
     var allDat = data
     var source= $('#showTime').html();
@@ -82,16 +73,13 @@ function zenCall(data){
     var html = template(data);
 
     // console.log( 'zen call has comenced', allDat.results[0].id) for testing
-
     $('#output').html(html);
-
-
 
 };
 
 
 
-//sorting function to grab 5 random cases
+//sorting function to grab 10 random cases
 function xpat(allDat){
    console.log('xpat is running and has data')
     var resp = allDat
@@ -115,14 +103,11 @@ $('#output').on('click', function(event){
     singleCase(caseid)
   })
 
-//sends
+//sends the request for the singular case
 function singleCase(caseid){
     console.log("Collecting single case")
-     var query = {
-              id :caseid
-          }
-
-    $.ajax({
+     var query = {id :caseid }
+     $.ajax({
           type: 'post',
           url: '/api2',
           data: query,
@@ -137,23 +122,41 @@ function singleCase(caseid){
 function doit(data){
   var comments = data.comments
   var total = data.comments.length
-  var fullthread = []
-  console.log('I made it ', comments)
-
-  for (var x = 0; x < total; x++){
-      fullthread.push(comments[x].body)
+  var roleAgent = data.users.find(findAgent)  //findAgent(data.users)
+  var user = {
+       agent:roleAgent.name,
+       email:roleAgent.email,
+       id:roleAgent.id
   }
-  showTime2(fullthread)
+  var fullthread = buildComment(comments, total) //[]
+  // console.log(data.users[0].role)
+  console.log(roleAgent)
 
-
-
+  showTime2(fullthread,user)
 
 }
- function showTime2(data){
 
+//simply builds the thread that gets displayed to the front end
+function buildComment(comments, total){
+     var thread= []
 
+  for (var x = 0; x < total; x++){
+      thread.push(comments[x].body)
+  }
+     return thread
+}
+//cycles through users on a case to find agent
+function findAgent(users){
+     return users.role === "agent"
+}
 
-   var caseInfo ={ comment: data}
+//is called by doit function to display data for agent and case
+ function showTime2(data,user){
+
+   var caseInfo ={ comment: data,
+                    agent: user.agent,
+                    email: user.email
+                   }
    var source = $('#part2').html()
    var template = Handlebars.compile(source)
    var html = template(caseInfo)

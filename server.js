@@ -3,6 +3,10 @@ const request = require('request');
 const bodyParser = require('body-parser');
 const http = require("https");
 const api_key = require('./public/config/config.js');
+const mj_key = require ('./public/config/mailjet.js');
+const mj_secret= require ('./public/config/mailjetSec.js');
+const mailjet = require ('node-mailjet').connect(mj_key,mj_secret);
+const mjRequest = mailjet
 const server  = express();
 const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert');
@@ -24,6 +28,26 @@ const dbURl = 'mongodb://127.0.0.1:27017/myproject';
       server.post('/reviewed', reviewResponse)
       server.listen(server.get('port'), listenCallBack);
 
+       //for testing purposes
+      // server.get('/mailtest', function(){
+      //      var  email={
+      //                   "FromEmail":"andra.ishmael@sharpspring.com",
+      //                   "FromName":"Mailjet Pilot",
+      //                   "Subject":"Your email flight plan!",
+      //                   "Text-part":"Dear passenger, welcome to Mailjet! May the delivery force be with you!",
+      //                   "Html-part":"<h3>Dear passenger, welcome to Mailjet!</h3><br />May the delivery force be with you!",
+      //                   "Recipients":[{"Email":"ishmaelak@gmail.com"}]
+      //                  }
+      //
+      //     var sendMail = mjRequest.post("send").request(email)
+      //
+      //     sendMail.then(result =>{
+      //           console.log(result.body)
+      //     })
+      //     .catch(err => {
+      //       console.log(err.statusCode)
+      //     })
+      // })
 
       //sends index file when called
       function home( req, res){
@@ -43,7 +67,7 @@ const dbURl = 'mongodb://127.0.0.1:27017/myproject';
           headers:
            { //'postman-token': 'b1fb188a-8f33-1d57-d44b-f98bc90ab4e9',
              'cache-control': 'no-cache',
-             authorization: 'Basic '+api_key } };// YW5kcmEuaXNobWFlbEBzaGFycHNwcmluZy5jb206N0pqXkklb0U=
+             authorization: 'Basic '+api_key } };
 
 
         request(options, function (error, res, body) {
@@ -66,8 +90,7 @@ const dbURl = 'mongodb://127.0.0.1:27017/myproject';
             { //'postman-token': 'b1fb188a-8f33-1d57-d44b-f98bc90ab4e9',
               'cache-control': 'no-cache',
               authorization: 'Basic '+api_key
-            } };// YW5kcmEuaXNobWFlbEBzaGFycHNwcmluZy5jb206N0pqXkklb0U=
-
+            } };
           request(options, function (error, res, body) {
               if (error) throw new Error(error);
               // console.log("api queried", body) for testing
@@ -77,19 +100,21 @@ const dbURl = 'mongodb://127.0.0.1:27017/myproject';
       }
 
 
-      //deals with form data
-      function reviewResponse(req, res ){
+      //inserts data into data base
+      function reviewResponse(req, res){
           var formData = req.body
+          notify(formData)
           MongoClient.connect(dbURl, function(err, db) {
             assert.equal(null, err);
-            //function goes here to write to database
-
             console.log("Connected successfully to server");
             insertDocuments(db, formData, function(){
                 db.close();
             });
 
           });
+          //this will eventually be set to a thank you page
+          res.sendFile('/html/index.html',{root:__dirname+'/public'});
+
 
       }
 
@@ -122,9 +147,29 @@ const dbURl = 'mongodb://127.0.0.1:27017/myproject';
              skills =parseInt(data.soft_skills)
         var total = interp + knowledge + effort + skills
         var average = total / 4
-          console.log("avg",average)
-          console.log("total", total)
           return average
+      }
+
+      //sends email to reviewed agent
+      function notify(data){
+          var avgScore= mathWork(data)
+           var  email={
+                        "FromEmail":"andra.ishmael@sharpspring.com",
+                        "FromName":"Mailjet Pilot",
+                        "Subject":"Your email flight plan!",
+                        "Text-part":"Dear passenger, welcome to Mailjet! May the delivery force be with you!",
+                        "Html-part":"<h3>Dear passenger, welcome to Mailjet!</h3><br />May the delivery force be with you!<br>Average Score:"+avgScore,
+                        "Recipients":[{"Email":data.Remail}]
+                       }
+           console.log("disabled temporarly",email)
+          // var sendMail = mjRequest.post("send").request(email)
+          //
+          // sendMail.then(result =>{
+          //       console.log(result.body)
+          // })
+          // .catch(err => {
+          //   console.log(err.statusCode)
+          // })
       }
 
      //logs out to console

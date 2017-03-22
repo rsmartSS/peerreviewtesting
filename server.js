@@ -103,6 +103,7 @@ const dbURl = 'mongodb://127.0.0.1:27017/myproject';
       //inserts data into data base
       function reviewResponse(req, res){
           var formData = req.body
+
           notify(formData)
           MongoClient.connect(dbURl, function(err, db) {
             assert.equal(null, err);
@@ -122,11 +123,12 @@ const dbURl = 'mongodb://127.0.0.1:27017/myproject';
       //sends information to collection
       function insertDocuments(db , data, callback){
         var average= mathWork(data)
+        var subDate = new Date().toDateString()
         //call current collection
         var collection = db.collection('myDocuments')
 
         //add record TODO:add variables references
-        collection.insertOne({email: data.email , firstName: data.firstname, lastName:data.lastname, reveiwedName: data.Rname, Interpatation:data.interpatation ,effort: data.Effort, knowledge: data.knowledge, softskill: data.soft_skills, overall: average, comment:data.reviewComment},
+        collection.insertOne({submissonDate: subDate,email: data.email , firstName: data.firstname, lastName:data.lastname, reveiwedName: data.Rname, case: data.case, Interpatation:data.interpatation ,effort: data.Effort, knowledge: data.knowledge, softskill: data.soft_skills, overall: average, comment:data.reviewComment},
         //handles error and does sopme minor checking for issues
         function(err, result) {
            assert.equal(err, null);

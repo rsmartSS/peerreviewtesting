@@ -14,6 +14,9 @@ var lwDD = lastWeek.getDate();
 var lwMM = lastWeek.getMonth() + 1;
 var lwYY = lastWeek.getFullYear();
 
+
+// getting the current case id
+var currentCaseID = 101;
 //Search query variables
 var type = 'type:ticket';
 var status = 'status>=solved';
@@ -106,6 +109,7 @@ $('#output').on('click', function(event){
 //sends the request for the singular case
 function singleCase(caseid){
     console.log("Collecting single case")
+      currentCaseID = caseid
      var query = {id :caseid }
      $.ajax({
           type: 'post',
@@ -155,7 +159,8 @@ function findAgent(users){
 
    var caseInfo ={ comment: data,
                     agent: user.agent,
-                    email: user.email
+                    email: user.email,
+                    case: currentCaseID
                    }
    var source = $('#part2').html()
    var template = Handlebars.compile(source)

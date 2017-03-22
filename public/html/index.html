@@ -97,6 +97,7 @@
       <div class="response">
         <h2>You are reveiwng <u>{{agent}}</u> Case</h2>
         <p>{{email}}</p>
+        <p>Case#:{{case}}</p>
 
        <form class="reviewForm" action="/reviewed" method="post">
         <fieldset id="userinfo">
@@ -104,6 +105,8 @@
            <input type="text" name="firstname"><br/>
            <label for="last_name">Last Name</label>
            <input type="text" name="lastname"><br/>
+           <label for="email">Email</label>
+           <input type="text" name="email"><br/>
         </fieldset>
         <fieldset id="interpatation">
           <label for="interpatation">Interpatation</label>

@@ -146,7 +146,7 @@ function doit(data){
   }
   var fullthread = buildComment(comments, total) //[]
   // console.log(data.users[0].role)
-  console.log(roleAgent)
+  // console.log(roleAgent)
 
   showTime2(fullthread,user)
 

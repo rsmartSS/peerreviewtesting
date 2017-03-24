@@ -59,11 +59,10 @@
         <div class="row">
           <div class="col-lg-12">
             <center>
-              <div class="chossen" id="output2"></div>
+              <div class="chossen" id="output2">
 
-
-            </center>
-          </div>
+              </div>
+          <!-- end of output2 -->
         </div>
      </div>
         <!-- this is all going in the Handlebars bit -->
@@ -85,77 +84,79 @@
     <script type="text/javascript" class="display_case" id="part2">
 
 
-     <div class="commentHolder">
-    {{#each comment }}
-      <p style="color:#fff;" class="comments">{{this}}</p>
-    {{/each}}
-    </div>
-    <div class="row">
+                        <div class="commentHolder">
+                        {{#each comment }}
+                         <p style="color:#fff;" class="comments">{{this}}</p>
+                        {{/each}}
+                        </div>
+                        <div class="row">
 
-     <center>
+                        <center>
 
-      <div class="response">
-        <h2>You are reveiwng <u>{{agent}}</u> Case</h2>
-        <p>{{email}}</p>
-        <p>Case#:{{case}}</p>
+                         <div class="response">
+                           <h2>You are reveiwng <u>{{agent}}</u> Case</h2>
+                           <p>{{email}}</p>
+                           <p>Case#:{{case}}</p>
 
-       <form class="reviewForm" action="/reviewed" method="post">
-        <fieldset id="userinfo">
-           <label for="interpatation">First Name</label>
-           <input type="text" name="firstname"><br/>
-           <label for="last_name">Last Name</label>
-           <input type="text" name="lastname"><br/>
-           <label for="email">Email</label>
-           <input type="text" name="email"><br/>
-        </fieldset>
-        <fieldset id="interpatation">
-          <label for="interpatation">Interpatation</label>
-          <span>1</span><input type="radio" checked id="1" name="interpatation" value="1">
-          <span>2</span><input type="radio" checked id="2" name="interpatation" value="2">
-          <span>3</span><input type="radio" checked id="3" name="interpatation" value="3">
-          <span>4</span><input type="radio" checked id="4" name="interpatation" value="4">
-          <span>5</span><input type="radio" checked id="5" name="interpatation" value="5">
-        </fieldset>
-        <fieldset id="effort">
-          <label for="effort">Effort</label>
-          <span>1</span><input type="radio" checked id="1" name="Effort" value="1">
-          <span>2</span><input type="radio" checked id="2" name="Effort" value="2">
-          <span>3</span><input type="radio" checked id="3" name="Effort" value="3">
-          <span>4</span><input type="radio" checked id="4" name="Effort" value="4">
-          <span>5</span><input type="radio" checked id="5" name="Effort" value="5">
-        </fieldset>
-        <fieldset id="knowledge">
-          <label for="knowledge">Knowledge</label>
-          <span>1</span><input type="radio" checked id="1" name="knowledge" value="1">
-          <span>2</span><input type="radio" checked id="2" name="knowledge" value="2">
-          <span>3</span><input type="radio" checked id="3" name="knowledge" value="3">
-          <span>4</span><input type="radio" checked id="4" name="knowledge" value="4">
-          <span>5</span><input type="radio" checked id="5" name="knowledge" value="5">
-        </fieldset>
-        <fieldset id="soft_skills">
-          <label for="soft_skills">Soft Skills</label>
-          <span>1</span><input type="radio" checked id="1" name="soft_skills" value="1">
-          <span>2</span><input type="radio" checked id="2" name="soft_skills" value="2">
-          <span>3</span><input type="radio" checked id="3" name="soft_skills" value="3">
-          <span>4</span><input type="radio" checked id="4" name="soft_skills" value="4">
-          <span>5</span><input type="radio" checked id="5" name="soft_skills" value="5">
-        </fieldset>
-        <fieldset>
-          <label for="reveiewComment">Enter your Thoughts on the handling of the case below:</label>
-          <textarea name="reviewComment" rows="8" cols="80"></textarea>
-        </fieldset>
-        <fieldset>
-        <input type="hidden" name="Rname" value="{{agent}}" />
-        <input type="hidden" name="Remail" value="{{email}}" />
-        <input type="hidden" name="case" value="{{case}}" />
-        </fieldset>
-        <p>
-          <button type="submit" class="btn btn-full" name="submit">Submit</button>
-        </p>
-      </form>
-      </div>
-      </center>
-     </div>
+                          <form class="reviewForm" action="/reviewed" method="post">
+                           <fieldset id="userinfo">
+                              <label for="interpatation">First Name:</label>
+                              <input type="text" name="firstname" required><br/>
+                              <label for="last_name">Last Name:</label>
+                              <input type="text" name="lastname" required><br/>
+                              <label for="email">Your Email:</label>
+                              <input type="text" name="email" required><br/>
+                           </fieldset>
+                           <fieldset id="interpatation">
+                             <label for="interpatation">Interpatation</label>
+                             <span>1</span><input type="radio"  id="1" name="interpatation" value="1"  required>
+                             <span>2</span><input type="radio"  id="2" name="interpatation" value="2">
+                             <span>3</span><input type="radio"  id="3" name="interpatation" value="3">
+                             <span>4</span><input type="radio"  id="4" name="interpatation" value="4">
+                             <span>5</span><input type="radio"  id="5" name="interpatation" value="5">
+                           </fieldset>
+                           <fieldset id="effort">
+                             <label for="effort">Effort</label>
+                             <span>1</span><input type="radio" id="1" name="Effort" value="1" required>
+                             <span>2</span><input type="radio"  id="2" name="Effort" value="2">
+                             <span>3</span><input type="radio"  id="3" name="Effort" value="3">
+                             <span>4</span><input type="radio"  id="4" name="Effort" value="4">
+                             <span>5</span><input type="radio"  id="5" name="Effort" value="5">
+                           </fieldset>
+                           <fieldset id="knowledge">
+                             <label for="knowledge">Knowledge</label>
+                             <span>1</span><input type="radio"  id="1" name="knowledge" value="1" required>
+                             <span>2</span><input type="radio"  id="2" name="knowledge" value="2">
+                             <span>3</span><input type="radio"  id="3" name="knowledge" value="3">
+                             <span>4</span><input type="radio"  id="4" name="knowledge" value="4">
+                             <span>5</span><input type="radio"  id="5" name="knowledge" value="5">
+                           </fieldset>
+                           <fieldset id="soft_skills">
+                             <label for="soft_skills">Soft Skills</label>
+                             <span>1</span><input type="radio"  id="1" name="soft_skills" value="1" required>
+                             <span>2</span><input type="radio"  id="2" name="soft_skills" value="2">
+                             <span>3</span><input type="radio"  id="3" name="soft_skills" value="3">
+                             <span>4</span><input type="radio"  id="4" name="soft_skills" value="4">
+                             <span>5</span><input type="radio"  id="5" name="soft_skills" value="5">
+                           </fieldset>
+                           <fieldset>
+                             <label for="reveiewComment">Enter your Thoughts on the handling of the case below:</label>
+                             <textarea name="reviewComment" rows="8" cols="80" required></textarea>
+                           </fieldset>
+                           <fieldset>
+                           <input type="hidden" name="Rname" value="{{agent}}" />
+                           <input type="hidden" name="Remail" value="{{email}}" />
+                           <input type="hidden" name="case" value="{{case}}" />
+                           </fieldset>
+                           <p>
+                             <button type="submit" id="submit_button" name="submit">Submit</button>
+                           </p>
+                         </form>
+                         </div>
+                         </center>
+                        </div>
+
+                    </center>
 
 
 

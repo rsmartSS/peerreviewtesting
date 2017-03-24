@@ -82,21 +82,33 @@ function zenCall(data){
 
 
 
-//sorting function to grab 10 random cases
+//sorting function to grab 10 random cases. Break case loop out into its own function
 function xpat(allDat){
    console.log('xpat is running and has data')
     var resp = allDat
     var respLength = resp.results.length
-    var caseIDArray = []
-   for (var x = 0; x < 10; x++){
-   	var randCase = Math.floor(Math.random() * (respLength + 1));
-   	caseIDArray.push(resp.results[randCase].id);
+    var caseIDArray = cycleThrough(resp)
+  //old version
+  // var caseIDArray =  []
+  //  for (var x = 0; x < 10; x++){
+  //  	var randCase = Math.floor(Math.random() * (respLength + 1));
+  //  	caseIDArray.push(resp.results[randCase].id);
    // 	console.log('Find your Zen: ', resp.results[randCase].id);
    // 	console.log(randCase);
 
-   }
 
    return caseIDArray
+}
+
+//function to handle random case selection
+function cycleThrough(resp){
+   var idArray = []
+   var respLength = resp.results.length
+   for (var x = 0; x < 10; x++){
+   	   var randCase = Math.floor(Math.random() * (respLength + 1));
+   	   idArray.push(resp.results[randCase].id);
+    }
+    return idArray
 }
 
 //part 2
@@ -172,6 +184,12 @@ function findAgent(users){
 
 
 })
+
+
+
+
+
+
 
 
 

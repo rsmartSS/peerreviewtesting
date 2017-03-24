@@ -109,8 +109,9 @@ body {
 }
 
 /*styling for response*/
-.response{
 
+
+.response{
   display: block;
   text-align: left;
   width: 700px;
@@ -120,6 +121,17 @@ body {
 }
 .response p{
   color: #fff;
+}
+
+/*form styling */
+#submit_button{
+  background-color: #4C4C4C;
+  border: 1px solid #84C340;
+  color:#fff;
+  padding:10px 30px;
+  border-radius: 200px;
+  font-size: 14px 
+
 }
 .reviewForm label{
   color:#fff;
@@ -133,7 +145,28 @@ button{
   color: #000;
 }
 
-
 textarea, input{
   color: #000 !important;
+}
+input[name="firstname"] {
+  margin-left: 5px;
+   }
+input[name="lastname"] {
+   margin-left: 9px;
+   }
+input[name="email"] {
+    margin-left: 7px;
+   }
+
+
+
+/*thank you page */
+.thanks{
+  text-align: center;
+  margin: 0 auto;
+  color: #fff;
+}
+.thanks h1{
+  font-weight: 200 !important;
+
 }

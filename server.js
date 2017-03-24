@@ -6,11 +6,15 @@ const api_key = require('./public/config/config.js');
 const mj_key = require ('./public/config/mailjet.js');
 const mj_secret= require ('./public/config/mailjetSec.js');
 const mailjet = require ('node-mailjet').connect(mj_key,mj_secret);
+const mongopass = require('./public/config/mongo.js')
 const mjRequest = mailjet
 const server  = express();
 const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert');
-const dbURl = 'mongodb://127.0.0.1:27017/myproject';
+const dbURl = 'mongodb://adminLP:'+mongopass+'@cluster0-shard-00-00-5pp3g.mongodb.net:27017,cluster0-shard-00-01-5pp3g.mongodb.net:27017,cluster0-shard-00-02-5pp3g.mongodb.net:27017/peerReviews?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin'
+//local url for testing 'mongodb://127.0.0.1:27017/myproject'; //live url////' mongodb://adminLP:'+mongopass+'@cluster0-shard-00-00-5pp3g.mongodb.net:27017,cluster0-shard-00-01-5pp3g.mongodb.net:27017,cluster0-shard-00-02-5pp3g.mongodb.net:27017/peerReviews?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin'
+
+
 
 
 
@@ -52,6 +56,8 @@ const dbURl = 'mongodb://127.0.0.1:27017/myproject';
       //sends index file when called
       function home( req, res){
         res.sendFile('/html/index.html',{root:__dirname+'/public'});
+
+
       }
       //makes first call to api to grab cases
       function makeCall(req, res){
@@ -113,8 +119,8 @@ const dbURl = 'mongodb://127.0.0.1:27017/myproject';
             });
 
           });
-          //this will eventually be set to a thank you page
-          res.sendFile('/html/index.html',{root:__dirname+'/public'});
+
+          res.sendFile('/html/thanks.html',{root:__dirname+'/public'});
 
 
       }
@@ -125,9 +131,9 @@ const dbURl = 'mongodb://127.0.0.1:27017/myproject';
         var average= mathWork(data)
         var subDate = new Date().toDateString()
         //call current collection
-        var collection = db.collection('myDocuments')
+        var collection = db.collection('weeklyReview')
 
-        //add record TODO:add variables references
+        //add record ß
         collection.insertOne({submissonDate: subDate,email: data.email , firstName: data.firstname, lastName:data.lastname, reveiwedName: data.Rname, case: data.case, Interpatation:data.interpatation ,effort: data.Effort, knowledge: data.knowledge, softskill: data.soft_skills, overall: average, comment:data.reviewComment},
         //handles error and does sopme minor checking for issues
         function(err, result) {
@@ -155,23 +161,26 @@ const dbURl = 'mongodb://127.0.0.1:27017/myproject';
       //sends email to reviewed agent
       function notify(data){
           var avgScore= mathWork(data)
+
+
            var  email={
                         "FromEmail":"andra.ishmael@sharpspring.com",
-                        "FromName":"Mailjet Pilot",
-                        "Subject":"Your email flight plan!",
-                        "Text-part":"Dear passenger, welcome to Mailjet! May the delivery force be with you!",
-                        "Html-part":"<h3>Dear passenger, welcome to Mailjet!</h3><br />May the delivery force be with you!<br>Average Score:"+avgScore,
-                        "Recipients":[{"Email":data.Remail}]
+                        "FromName":"Super Support",
+                        "Subject":"One of your case got reviewed!!",
+                        "Text-part":"!",
+                        "Html-part":    "<h3>Hey, "+data.firstname+" reviwed case#: "+data.case+"!</h3>Average Score: "+avgScore+"<br>knowledge: "+data.knowledge+"<br>Effort: "+data.Effort+"<br>Interpatation: "+data.interpatation+"<br>Soft Skills: "+data.soft_skills+"<br>Their Comment on the case: <br><br>"+data.reviewComment,
+                        "Recipients":[{"Email":data.email}]//TODO: change this before it goes live
                        }
-           console.log("disabled temporarly",email)
-          // var sendMail = mjRequest.post("send").request(email)
-          //
-          // sendMail.then(result =>{
-          //       console.log(result.body)
-          // })
-          // .catch(err => {
-          //   console.log(err.statusCode)
-          // })
+
+          //  console.log("disabled temporarly",email)
+          var sendMail = mjRequest.post("send").request(email)
+
+          sendMail.then(result =>{
+                console.log(result.body)
+          })
+          .catch(err => {
+            console.log(err.statusCode)
+          })
       }
 
      //logs out to console

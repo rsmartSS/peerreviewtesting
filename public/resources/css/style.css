@@ -186,7 +186,7 @@ header{
 .load-text-box{
 
     width: 400px;
-    
+
     -webkit-box-shadow: -2px 1px 14px 9px rgba(0,0,0,0.44);
     -moz-box-shadow: -2px 1px 14px 9px rgba(0,0,0,0.44);
     box-shadow: -2px 1px 14px 9px rgba(0,0,0,0.44);
@@ -230,3 +230,24 @@ header{
     border-bottom: 2px solid #e67e22;
 
 }
+
+
+/*loader*/
+#loader{
+       display: block;
+       position: relative;
+       left: 50%;
+       right: 50%;
+       top: 50%;
+       width: 150px;
+       height: 150px;
+       margin: -75px 0 0 -75px;
+
+       border: 3px solid transparent;
+       border-top-color: #3498db;
+       z-index: 1500;
+       border-radius: 50%;
+       -webkit-animation: spin 2s linear infinite;
+       animation: spin 1.5s linear infinite;
+
+     }

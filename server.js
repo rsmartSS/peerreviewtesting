@@ -166,10 +166,10 @@ const dbURl = 'mongodb://adminLP:'+mongopass+'@cluster0-shard-00-00-5pp3g.mongod
            var  email={
                         "FromEmail":"andra.ishmael@sharpspring.com",
                         "FromName":"Super Support",
-                        "Subject":"One of your case got reviewed!!",
+                        "Subject":"One of your casees got reviewed!!",
                         "Text-part":"!",
                         "Html-part":    "<h3>Hey, "+data.firstname+" reviwed case#: "+data.case+"!</h3>Average Score: "+avgScore+"<br>knowledge: "+data.knowledge+"<br>Effort: "+data.Effort+"<br>Interpatation: "+data.interpatation+"<br>Soft Skills: "+data.soft_skills+"<br>Their Comment on the case: <br><br>"+data.reviewComment,
-                        "Recipients":[{"Email":data.email}]//TODO: change this before it goes live
+                        "Recipients":[{"Email":data.Remail}]//TODO: change this before it goes live
                        }
 
           //  console.log("disabled temporarly",email)

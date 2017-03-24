@@ -1,4 +1,7 @@
 $(document).ready(function($){
+//activate tooltips
+$('[data-toggle="tooltip"]').tooltip();
+
 //base uri
 const baseUrl = 'https://sharpspring.zendesk.com/api/v2/search.json/'
 // const path = '/api/v2/search.json/' no longer necesarry
@@ -42,6 +45,7 @@ function buildQuery(){
 
 //Makes first api call to collect csases
 function getTickets(){
+  $("#loader").toggle(100)
 
     var search = {
           query: buildQuery(),
@@ -66,6 +70,7 @@ function errorHandler(err){
 
 // When Call is completed this runs calls xpat to randomly select 10 cases
 function zenCall(data){
+    $("#loader").toggle(100)
     var allDat = data
     var source= $('#showTime').html();
     var template= Handlebars.compile(source);
@@ -168,7 +173,9 @@ function findAgent(users){
 
 //is called by doit function to display data for agent and case
  function showTime2(data,user){
-
+   $('html, body').animate({
+      scrollTop: $("#output2").offset().top
+  }, 1000);
    var caseInfo ={ comment: data,
                     agent: user.agent,
                     email: user.email,

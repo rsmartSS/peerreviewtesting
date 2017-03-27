@@ -104,12 +104,31 @@ const dbURl = 'mongodb://adminLP:'+mongopass+'@cluster0-shard-00-00-5pp3g.mongod
              }).pipe(res)
 
       }
+      //Third call to zen desk to tag case as reviewed
+      function addtag(data){
+        var tagUrl= "https://sharpspring.zendesk.com/api/v2/tickets/"+data.case+"/tags.json"
+        var options ={
+          method: 'PUT',
+          url: tagUrl,
+          data: { "tags": ["Peer_reviewed"] } ,
+          headers:
+           {
+             'cache-control': 'no-cache',
+             authorization: 'Basic '+api_key
+           } };
+         request(options, function (error, res, body) {
+             if (error) throw new Error(error);
+             // console.log("api queried", body) for testing
+
+            }).pipe(res)
+
+      }
 
 
       //inserts data into data base
       function reviewResponse(req, res){
           var formData = req.body
-
+          // addtag(formData) should work test later 
           notify(formData)
           MongoClient.connect(dbURl, function(err, db) {
             assert.equal(null, err);

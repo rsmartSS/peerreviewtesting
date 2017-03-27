@@ -1,6 +1,6 @@
 $(document).ready(function($){
 //activate tooltips
-$('[data-toggle="tooltip"]').tooltip();
+$('[data-toggle="tooltip"]').tooltip({delay: 100});
 
 //base uri
 const baseUrl = 'https://sharpspring.zendesk.com/api/v2/search.json/'
@@ -35,7 +35,7 @@ var beforeDate = yy + "-" + mm + "-" + dd; //2017-02-22
 //build out url
 function buildQuery(){
   //type + " created<" + beforeDate + " created>" + afterDate + " " + status
-  type + " created<" + beforeDate + " created>" + afterDate + " " + status
+  // type + " created<" + beforeDate + " created>" + afterDate + " " + status
 
   var queryString = type + " created<" + beforeDate + " created>" + afterDate + " " + status
 //'type:ticket created<2017-02-15 created>2017-02-13 status>=solved'//'type:ticket+created<2017-02-15+created>2017-02-13+status>=solved'
@@ -110,11 +110,21 @@ function cycleThrough(resp){
    var idArray = []
    var respLength = resp.results.length
    for (var x = 0; x < 10; x++){
-   	   var randCase = Math.floor(Math.random() * (respLength + 1));
-   	   idArray.push(resp.results[randCase].id);
+   	   var randCase = Math.floor(Math.random() * (respLength + 1)) || 42
+       var caseTag = resp.results[randCase].tags.find(findTag)
+       if(caseTag){
+         x = x - 1
+       }
+       else{
+          idArray.push(resp.results[randCase].id);
+       }
     }
     return idArray
 }
+
+function findTag(tags){
+    return tags === "peer_reviewed"
+ }
 
 //part 2
 //on click the  case number is collceted and sent to the function to build the display
@@ -133,6 +143,7 @@ function singleCase(caseid){
           url: '/api2',
           data: query,
           success: doit,
+          error: errorHandler,
           dataType: 'json'
         });
 }

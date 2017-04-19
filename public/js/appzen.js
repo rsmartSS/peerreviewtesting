@@ -119,7 +119,7 @@ function cycleThrough(resp){
    var respLength = resp.results.length
    for (var x = 0; x < 10; x++){
    	   var randCase = Math.floor(Math.random() * (respLength + 1)) || 42
-       var caseTag = resp.results[randCase].tags.find(findTag)
+       var caseTag = resp.results[randCase].tags.find(findTag) || null
        if(caseTag){
          x = x - 1
        }
@@ -127,7 +127,6 @@ function cycleThrough(resp){
           idArray.push({id:resp.results[randCase].id,assignee:resp.results[randCase].assignee_id});
        }
     }
-    console.log(idArray)
     return idArray
 }
 

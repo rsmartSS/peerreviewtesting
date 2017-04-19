@@ -130,7 +130,7 @@ const dbURl = 'mongodb://adminLP:'+mongopass+'@cluster0-shard-00-00-5pp3g.mongod
              if (error) throw new Error(error);
              // console.log("api queried", body) for testing
 
-            }).pipe(res)
+            })
 
       }
 

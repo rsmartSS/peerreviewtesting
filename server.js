@@ -14,6 +14,8 @@ const assert = require('assert');
 const dbURl = 'mongodb://adminLP:'+mongopass+'@cluster0-shard-00-00-5pp3g.mongodb.net:27017,cluster0-shard-00-01-5pp3g.mongodb.net:27017,cluster0-shard-00-02-5pp3g.mongodb.net:27017/peerReviews?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin'
 //local url for testing 'mongodb://127.0.0.1:27017/myproject'; //live url////' mongodb://adminLP:'+mongopass+'@cluster0-shard-00-00-5pp3g.mongodb.net:27017,cluster0-shard-00-01-5pp3g.mongodb.net:27017,cluster0-shard-00-02-5pp3g.mongodb.net:27017/peerReviews?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin'
 
+      //globals
+        var reviewData=[]
 
 
 
@@ -27,9 +29,17 @@ const dbURl = 'mongodb://adminLP:'+mongopass+'@cluster0-shard-00-00-5pp3g.mongod
       server.set('port', process.env.PORT || 8080);
 
       server.get('/', home);
+      server.get('/pamzenfu', function(req,res){
+        res.sendFile('/html/pampage.html',{root:__dirname+'/public'});
+      })
+      server.post('/giphyThanks', giphyCall)
+      server.get('/test', displayReview)
+      server.post('/db', displayReview)
       server.post('/api',makeCall);
       server.post('/api2', commentUser);
       server.post('/reviewed', reviewResponse)
+
+
       server.listen(server.get('port'), listenCallBack);
 
        //for testing purposes
@@ -128,8 +138,9 @@ const dbURl = 'mongodb://adminLP:'+mongopass+'@cluster0-shard-00-00-5pp3g.mongod
       //inserts data into data base
       function reviewResponse(req, res){
           var formData = req.body
-          // addtag(formData) should work test later 
+          addtag(formData) //should work test later
           notify(formData)
+          console.log(formData)
           MongoClient.connect(dbURl, function(err, db) {
             assert.equal(null, err);
             console.log("Connected successfully to server");
@@ -148,12 +159,12 @@ const dbURl = 'mongodb://adminLP:'+mongopass+'@cluster0-shard-00-00-5pp3g.mongod
       //sends information to collection
       function insertDocuments(db , data, callback){
         var average= mathWork(data)
-        var subDate = new Date().toDateString()
+        var subDate = new Date().toISOString()
         //call current collection
         var collection = db.collection('weeklyReview')
 
         //add record ß
-        collection.insertOne({submissonDate: subDate,email: data.email , firstName: data.firstname, lastName:data.lastname, reveiwedName: data.Rname, case: data.case, Interpatation:data.interpatation ,effort: data.Effort, knowledge: data.knowledge, softskill: data.soft_skills, overall: average, comment:data.reviewComment},
+        collection.insertOne({submissonDate: subDate,email: data.email , firstName: data.firstname, lastName:data.lastname, reveiwedName: data.Rname, case: data.case, Interpatation:data.interpatation ,effort: data.Effort, knowledge: data.knowledge, softskill: data.soft_skills, overall: average, commentDoWell:data.doWell, commentImprove: data.improve, commentDifferent:data.diff, commentLearn: data.learn },
         //handles error and does sopme minor checking for issues
         function(err, result) {
            assert.equal(err, null);
@@ -165,6 +176,27 @@ const dbURl = 'mongodb://adminLP:'+mongopass+'@cluster0-shard-00-00-5pp3g.mongod
          });
 
       }
+     //collect reveiws from datbase
+     function displayReview(req, res){
+
+
+             MongoClient.connect(dbURl, function(err, db){
+              //  var cursor= db.collection('weeklyReview').find()
+            db.collection('weeklyReview').find().toArray(function(err, results){
+                res.send(results)
+              })
+
+                })
+                //  console.log(reviewData)
+                //   res.send(reviewData)
+
+     }
+
+     function print(){
+       console.log(reviewData)
+
+     }
+
 
       //calculates average of all response
       function mathWork(data){
@@ -183,12 +215,12 @@ const dbURl = 'mongodb://adminLP:'+mongopass+'@cluster0-shard-00-00-5pp3g.mongod
 
 
            var  email={
-                        "FromEmail":"andra.ishmael@sharpspring.com",
+                        "FromEmail":"sspeerreview@gmail.com",
                         "FromName":"Super Support",
                         "Subject":"One of your casees got reviewed!!",
                         "Text-part":"!",
-                        "Html-part":    "<h3>Hey, "+data.firstname+" reviwed case#: "+data.case+"!</h3>Average Score: "+avgScore+"<br>knowledge: "+data.knowledge+"<br>Effort: "+data.Effort+"<br>Interpatation: "+data.interpatation+"<br>Soft Skills: "+data.soft_skills+"<br>Their Comment on the case: <br><br>"+data.reviewComment,
-                        "Recipients":[{"Email":data.Remail}]//TODO: change this before it goes live
+                        "Html-part":  "<h3>Hey, "+data.firstname+" reviwed case#: "+data.case+"!</h3>Average Score: "+avgScore+"<br>knowledge: "+data.knowledge+"<br>Effort: "+data.Effort+"<br>Interpatation: "+data.interpatation+"<br>Soft Skills: "+data.soft_skills+"<br>What you did well: <br><br>"+data.doWell+"<br> What you can imporve:<br><br>"+data.improve+"<br>What they would have done differently:<br><br>"+data.diff+"<br>What they learned from your case:<br><br>"+data.learn,
+                        "Recipients":[{"Email":data.Remail}]
                        }
 
           //  console.log("disabled temporarly",email)
@@ -202,8 +234,19 @@ const dbURl = 'mongodb://adminLP:'+mongopass+'@cluster0-shard-00-00-5pp3g.mongod
           })
       }
 
+      //collects random gif from giphy api
+      function giphyCall(req, res){
+        var options ={
+          method: 'GET',
+          url: 'http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&rating=pg-13' };
+         request(options, function (error, res, body) {
+             if (error) throw new Error(error);
+
+           }).pipe(res)
+      }
+
      //logs out to console
       function listenCallBack(){
-        console.log('Now Listening on port:'+ server.get('port'))
+        console.log('Now Listening on port: '+ server.get('port'))
 
       }

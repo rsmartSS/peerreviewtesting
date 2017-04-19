@@ -20,6 +20,7 @@ var lwYY = lastWeek.getFullYear();
 
 // getting the current case id
 var currentCaseID = 101;
+var currentAssignee
 //Search query variables
 var type = 'type:ticket';
 var status = 'status>=solved';
@@ -58,6 +59,7 @@ function getTickets(){
           url: '/api',
           data: search,
           success: zenCall,
+          error: errorHandler2,
           dataType: 'json'
         });
 
@@ -66,6 +68,12 @@ function getTickets(){
 //logs errors to console
 function errorHandler(err){
     console.log('Well that sucks',err);
+}
+//triggers popup on the page'
+function errorHandler2(err){
+  console.log("api's not resopnding", err)
+  $('#apiError').modal('toggle')
+
 }
 
 // When Call is completed this runs calls xpat to randomly select 10 cases
@@ -116,9 +124,10 @@ function cycleThrough(resp){
          x = x - 1
        }
        else{
-          idArray.push(resp.results[randCase].id);
+          idArray.push({id:resp.results[randCase].id,assignee:resp.results[randCase].assignee_id});
        }
     }
+    console.log(idArray)
     return idArray
 }
 
@@ -130,6 +139,7 @@ function findTag(tags){
 //on click the  case number is collceted and sent to the function to build the display
 $('#output').on('click', function(event){
     var caseid =event.target.id
+    currentAssignee = event.target.name
     singleCase(caseid)
   })
 
@@ -154,16 +164,13 @@ function singleCase(caseid){
 function doit(data){
   var comments = data.comments
   var total = data.comments.length
-  var roleAgent = data.users.find(findAgent)  //findAgent(data.users)
+  var roleAgent= findAgent(data.users)
   var user = {
        agent:roleAgent.name,
        email:roleAgent.email,
        id:roleAgent.id
   }
   var fullthread = buildComment(comments, total) //[]
-  // console.log(data.users[0].role)
-  // console.log(roleAgent)
-
   showTime2(fullthread,user)
 
 }
@@ -173,13 +180,21 @@ function buildComment(comments, total){
      var thread= []
 
   for (var x = 0; x < total; x++){
-      thread.push(comments[x].body)
+      thread.push(comments[x].plain_body)
   }
      return thread
 }
 //cycles through users on a case to find agent
 function findAgent(users){
-     return users.role === "agent"
+      var agent
+      for(x = 0; x < users.length; x++){
+          if(users[x].id == currentAssignee){
+            agent = users[x]
+          }
+
+      }
+
+      return agent
 }
 
 //is called by doit function to display data for agent and case
@@ -200,14 +215,88 @@ function findAgent(users){
  }
 
 
+//rotate gifs
+callGiphy()
+function callGiphy(){
+
+
+if($("#thanks").length){
+   console.log("thank you page")
+   $.ajax({
+        type: 'POST',
+        url: '/giphyThanks',
+        success: showTimeThanks,
+        error: errorHandler,
+        dataType: 'json'
+      });
+}
+else{
+  return
+}
+
+
+}
+
+function showTimeThanks(data){
+     var thankInfo = {
+       url:data.data.image_url
+     }
+
+    var source = $('#randomThanks').html()
+    var template = Handlebars.compile(source)
+    var html = template(thankInfo)
+
+    $('#gif').html(html)
+
+  }
+
+
+//PAM display
+callDb()
+function callDb(){
+    if($('#reviews').length){
+      $.ajax({
+           type: 'POST',
+           url: '/db',
+           success: sortTodisplay ,
+           error: errorHandler,
+           dataType: 'json'
+         });
+
+    }
+}
+
+function sortTodisplay(reviews){
+
+     var cases =[]
+     var lastWeekIso = JSON.stringify(lastWeek)
+     console.log(lastWeekIso)
+
+  for(x = 1; x < reviews.length; ++x){
+
+        if(reviews[x].submissonDate > lastWeekIso){
+          cases.push(reviews[x])
+        }
+  }
+   showTimePam(cases)
+}
+
+
+function showTimePam(reviews){
+
+  console.log(reviews)
+
+  var data = reviews
+  console.log(data);
+  var source = $('#showTimePam').html()
+  var template = Handlebars.compile(source)
+  var html = template(data)
+
+  $('#showTimeReview').html(html)
+
+  }
 
 })
-
-
-
-
-
-
 
 
 

@@ -28,7 +28,7 @@
 
 </head>
 
-<body>
+<body id="thanks" >
     <!-- Page Content -->
     <div class="container">
 
@@ -43,25 +43,26 @@
           <div class="col-md-8 col-md-offset-2">
             <div class="thanks">
               <h1>Cheers and thanks for doing the weekly review! <br>Here, have a gif to celebrate!</h1>
-
-              <img src="https://media.giphy.com/media/qToRXyEdW31xm/giphy.gif" alt="">
+                <div id="gif" >
+                </div>
             </div>
           </div>
         </div>
         <!-- /.row -->
 
+        <!-- jQuery Version 1.11.1 -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
-    <!-- jQuery Version 1.11.1 -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <!-- Bootstrap Core JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="../js/appzen.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../js/appzen.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.js"></script>
-
+        <script type="text/javascript" id="randomThanks">
+          <img src="{{url}}" alt=""/>
+        </script>
 
 
 </body>
-
 
 </html>

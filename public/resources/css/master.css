@@ -253,3 +253,27 @@ input[name="email"] {
      color: #fff;
      padding:10px;
   }
+  #search{
+    background-color: #4C4C4C;
+    background-image: none;
+    border: none;
+    color:#fff;
+    font-size: 15px;
+  }
+  .glyphicon-search:before{
+    font-size: 20px;
+  }
+  #search:focus {outline:0;}
+*:focus {outline:0;}
+  #gosearch{
+    background-color: #4c4c4c;
+      border: 1px solid #84C340;
+  }
+  .form-inline, #gosearch{
+    display: inline-block;
+  }
+
+
+  /*#ui-datepicker-div{
+    background-color: #fff;
+  }*/

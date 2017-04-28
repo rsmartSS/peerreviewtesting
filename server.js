@@ -139,7 +139,7 @@ const dbURl = 'mongodb://adminLP:'+mongopass+'@cluster0-shard-00-00-5pp3g.mongod
       function reviewResponse(req, res){
           var formData = req.body
           addtag(formData) //should work test later
-          notify(formData)
+          // notify(formData)
           console.log(formData)
           MongoClient.connect(dbURl, function(err, db) {
             assert.equal(null, err);
@@ -159,7 +159,8 @@ const dbURl = 'mongodb://adminLP:'+mongopass+'@cluster0-shard-00-00-5pp3g.mongod
       //sends information to collection
       function insertDocuments(db , data, callback){
         var average= mathWork(data)
-        var subDate = new Date().toISOString()
+        var subDate = new Date().toDateString()
+        console.log(subDate)
         //call current collection
         var collection = db.collection('weeklyReview')
 

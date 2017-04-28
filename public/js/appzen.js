@@ -21,6 +21,7 @@ var lwYY = lastWeek.getFullYear();
 // getting the current case id
 var currentCaseID = 101;
 var currentAssignee
+var allReviews
 //Search query variables
 var type = 'type:ticket';
 var status = 'status>=solved';
@@ -264,29 +265,61 @@ function callDb(){
 
     }
 }
-
+//sort to display the reviews from last week
 function sortTodisplay(reviews){
-
      var cases =[]
      var lastWeekIso = JSON.stringify(lastWeek)
-     console.log(lastWeekIso)
+
+
+    var d1 = new Date(lastWeek)
+    var d2 = new Date(reviews[10].submissonDate)
+
+
 
   for(x = 1; x < reviews.length; ++x){
+    var d1 = new Date(lastWeek)
+    var d2 = new Date(reviews[x].submissonDate)
 
-        if(reviews[x].submissonDate > lastWeekIso){
+        if(d1>d2){
           cases.push(reviews[x])
         }
   }
    showTimePam(cases)
 }
 
+// TODO:finsish
+
+//sorts cases according to input from user
+function sortbyDateRange(){
+  var cases =[]
+  var dateStart
+  var dateEnd
+
+  for(x= 1; x <reviews.length; ++x){
+
+       if(reviews[x].submissonDate > dateStart && reviews[x].submissonDate < dateEnd){
+           cases.push(reviews[x])
+       }
+
+  }
+}
+
+function sortByname(){
+  var cases[]
+  for(x= 1; x <reviews.length; ++x){
+
+          if(reviews[x].firstName = name){
+           cases.push(reviews[x])
+       }
+
+  }
+}
+
 
 function showTimePam(reviews){
 
-  console.log(reviews)
 
   var data = reviews
-  console.log(data);
   var source = $('#showTimePam').html()
   var template = Handlebars.compile(source)
   var html = template(data)
@@ -294,6 +327,12 @@ function showTimePam(reviews){
   $('#showTimeReview').html(html)
 
   }
+//controls date range selection
+$('.input-daterange').datepicker({
+  todayHighlight: true,
+  todayBtn: "linked"
+
+});
 
 })
 

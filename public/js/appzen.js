@@ -287,7 +287,7 @@ function sortTodisplay(reviews){
    showTimePam(cases)
 }
 
-// TODO:finsish
+// TODO:finish
 
 //sorts cases according to input from user
 function sortbyDateRange(){
@@ -305,7 +305,7 @@ function sortbyDateRange(){
 }
 
 function sortByname(){
-  var cases[]
+  var cases =[]
   for(x= 1; x <reviews.length; ++x){
 
           if(reviews[x].firstName = name){
@@ -333,6 +333,15 @@ $('.input-daterange').datepicker({
   todayBtn: "linked"
 
 });
+
+$('#gosearch').on('click', test)
+
+function sortStructure(){
+
+  console.log('hello')
+}
+
+
 
 })
 

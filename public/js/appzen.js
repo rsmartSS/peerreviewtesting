@@ -268,14 +268,12 @@ function callDb(){
 
 //sort to display the reviews from last week
 function sortTodisplay(reviews){
+     allReviews = reviews
+    //  $('#start').val(lastWeek)
+    // $('#end').val()
      var cases =[]
-     var lastWeekIso = JSON.stringify(lastWeek)
-
-
-    var d1 = new Date(lastWeek)
+     var d1 = new Date(lastWeek)
     // var d2 = new Date(reviews[10].submissonDate)
-
-
 
   for(x = 1; x < reviews.length; ++x){
     var d1 = new Date(lastWeek)
@@ -291,31 +289,59 @@ function sortTodisplay(reviews){
 // TODO:finish
 
 //sorts cases according to input from user
-function sortbyDateRange(start, end){
+function sortbyDateRange(start, end, agent){
   var cases =[]
-  var dateStart
-  var dateEnd
+  var dateStart = new Date(start)
+  var dateEnd = new Date(end)
 
-   console.log("sorts",start+" "+end)
-  // for(x= 1; x <reviews.length; ++x){
-  //
-  //      if(reviews[x].submissonDate > dateStart && reviews[x].submissonDate < dateEnd){
-  //          cases.push(reviews[x])
-  //      }
-  //
-  // }
-}
+   for(x= 1; x <allReviews.length; ++x){
+          var caseDate = new Date(allReviews[x].submissonDate)
 
-function sortByname(){
-  var cases =[]
+        if( caseDate > dateStart && caseDate< dateEnd){
+            cases.push(allReviews[x])
+               }
+   }
 
-  for(x= 1; x < allReviews.length; ++x){
 
-          if(reviews[x].firstName = name){
-           cases.push(reviews[x])
-       }
+  if(agent){
+
+    console.log("call agent sort")
+    sortByname(cases,agent)
 
   }
+  else if(cases.length > 0){
+    console.log("show time")
+    showTimePam(cases)
+  }
+  else{
+    alert("no cases in this range.")
+  }
+}
+
+function sortByname(cases,agent){
+  var sortedcases =[]
+  var name = agent.toLowerCase()
+
+
+  for(x= 1; x < cases.length ; ++x){
+      var caseName = cases[x].firstName
+      var compareName = caseName.toLowerCase()
+
+          if( compareName == name){
+           sortedcases.push(cases[x])
+       }
+
+
+  }
+
+
+if(sortedcases.length > 0){
+  showTimePam(sortedcases)
+
+}
+else{
+  alert("No one with that that name, try again")
+}
 }
 
 
@@ -343,11 +369,16 @@ function sortStructure(){
  var startDate = $('#start').val()
  var endDate = $('#end').val()
  var agent = $('#agent').val()
-  // console.log('hello', startDate+" "+endDate+" "+agent)
+ console.log(agent)
 
- sortbyDateRange(startDate, endDate)
+ if(startDate)
+{
+  sortbyDateRange(startDate, endDate, agent)
 
-
+}
+else{
+   alert('Start date is missing, brah')
+}
 }
 
 

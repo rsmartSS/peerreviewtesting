@@ -265,6 +265,7 @@ function callDb(){
 
     }
 }
+
 //sort to display the reviews from last week
 function sortTodisplay(reviews){
      var cases =[]
@@ -272,7 +273,7 @@ function sortTodisplay(reviews){
 
 
     var d1 = new Date(lastWeek)
-    var d2 = new Date(reviews[10].submissonDate)
+    // var d2 = new Date(reviews[10].submissonDate)
 
 
 
@@ -280,7 +281,7 @@ function sortTodisplay(reviews){
     var d1 = new Date(lastWeek)
     var d2 = new Date(reviews[x].submissonDate)
 
-        if(d1>d2){
+        if(d1<d2){
           cases.push(reviews[x])
         }
   }
@@ -290,23 +291,25 @@ function sortTodisplay(reviews){
 // TODO:finish
 
 //sorts cases according to input from user
-function sortbyDateRange(){
+function sortbyDateRange(start, end){
   var cases =[]
   var dateStart
   var dateEnd
 
-  for(x= 1; x <reviews.length; ++x){
-
-       if(reviews[x].submissonDate > dateStart && reviews[x].submissonDate < dateEnd){
-           cases.push(reviews[x])
-       }
-
-  }
+   console.log("sorts",start+" "+end)
+  // for(x= 1; x <reviews.length; ++x){
+  //
+  //      if(reviews[x].submissonDate > dateStart && reviews[x].submissonDate < dateEnd){
+  //          cases.push(reviews[x])
+  //      }
+  //
+  // }
 }
 
 function sortByname(){
   var cases =[]
-  for(x= 1; x <reviews.length; ++x){
+
+  for(x= 1; x < allReviews.length; ++x){
 
           if(reviews[x].firstName = name){
            cases.push(reviews[x])
@@ -334,11 +337,17 @@ $('.input-daterange').datepicker({
 
 });
 
-$('#gosearch').on('click', test)
+$('#gosearch').on('click', sortStructure)
 
 function sortStructure(){
+ var startDate = $('#start').val()
+ var endDate = $('#end').val()
+ var agent = $('#agent').val()
+  // console.log('hello', startDate+" "+endDate+" "+agent)
 
-  console.log('hello')
+ sortbyDateRange(startDate, endDate)
+
+
 }
 
 

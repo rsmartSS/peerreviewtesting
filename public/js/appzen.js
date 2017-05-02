@@ -274,9 +274,15 @@ function callDb(){
 //sort to display the reviews from last week
 function sortTodisplay(reviews){
      allReviews = reviews
-     arrayDupes("firstName",allReviews)
+     var usersInDb = arrayDupes("firstName",allReviews)
+     console.log(usersInDb)
+     var s = $("#agent")
+     for(item in usersInDb){
+       $('<option />', {value:item, text:item}).appendTo(s);
+     }
     //  $('#start').val(lastWeek)
     // $('#end').val()
+
      var cases =[]
      var d1 = new Date(lastWeek)
     // var d2 = new Date(reviews[10].submissonDate)
@@ -402,7 +408,6 @@ function arrayDupes(propertyName, inputArray){
         delete item.duplicate;
       }
     });
-    console.log(testObject)
     return testObject
 }
 

@@ -1,6 +1,6 @@
 $(document).ready(function($){
 //activate tooltips
-$('[data-toggle="tooltip"]').tooltip({delay: 100});
+$('[data-toggle="tooltip"]').tooltip();
 
 //base uri
 const baseUrl = 'https://sharpspring.zendesk.com/api/v2/search.json/'
@@ -118,17 +118,22 @@ function xpat(allDat){
 function cycleThrough(resp){
    var idArray = []
    var respLength = resp.results.length
-   for (var x = 0; x < 10; x++){
-   	   var randCase = Math.floor(Math.random() * (respLength + 1)) || 42
-       var caseTag = resp.results[randCase].tags.find(findTag) || null
-       if(caseTag){
-         x = x - 1
-       }
-       else{
-          idArray.push({id:resp.results[randCase].id,assignee:resp.results[randCase].assignee_id});
-       }
-    }
-    return idArray
+   try {
+     for (var x = 0; x < 10; x++){
+     	   var randCase = Math.floor(Math.random() * (respLength + 1)) || 42
+         var caseTag = resp.results[randCase].tags.find(findTag) || null
+          console.log(caseTag)
+         if(caseTag){
+           x = x - 1
+         }
+         else{
+            idArray.push({id:resp.results[randCase].id,assignee:resp.results[randCase].assignee_id});
+         }
+      }
+      return idArray
+   } catch (e) {
+       alert("Error encountered, try refreshing the browser.",e)
+   }
 }
 
 function findTag(tags){
@@ -269,6 +274,7 @@ function callDb(){
 //sort to display the reviews from last week
 function sortTodisplay(reviews){
      allReviews = reviews
+     arrayDupes("firstName",allReviews)
     //  $('#start').val(lastWeek)
     // $('#end').val()
      var cases =[]
@@ -380,10 +386,31 @@ else{
    alert('Start date is missing, brah')
 }
 }
+function arrayDupes(propertyName, inputArray){
+  var seenDuplicate = false,
+    testObject = {};
+
+    inputArray.map(function(item){
+      var itemPropertyName = item[propertyName]
+      if (itemPropertyName in testObject){
+        testObject[itemPropertyName].duplicate = true;
+        item.duplicate = true
+        sendDuplicate = true;
+      }
+      else{
+        testObject[itemPropertyName]= item;
+        delete item.duplicate;
+      }
+    });
+    console.log(testObject)
+    return testObject
+}
 
 
 
 })
+
+
 
 
 

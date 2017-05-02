@@ -165,7 +165,7 @@ const dbURl = 'mongodb://adminLP:'+mongopass+'@cluster0-shard-00-00-5pp3g.mongod
         var collection = db.collection('weeklyReview')
 
         //add record ß
-        collection.insertOne({submissonDate: subDate,email: data.email , firstName: data.firstname, lastName:data.lastname, reveiwedName: data.Rname, case: data.case, Interpretation:data.interpretation ,effort: data.Effort, knowledge: data.knowledge, softskill: data.soft_skills, overall: average, commentDoWell:data.doWell, commentImprove: data.improve, commentDifferent:data.diff, commentLearn: data.learn },
+        collection.insertOne({submissonDate: subDate,email: data.email , firstName: data.firstname.toLowerCase(), lastName:data.lastname.toLowerCase(), reveiwedName: data.Rname, case: data.case, Interpretation:data.interpretation ,effort: data.Effort, knowledge: data.knowledge, softskill: data.soft_skills, overall: average, commentDoWell:data.doWell, commentImprove: data.improve, commentDifferent:data.diff, commentLearn: data.learn },
         //handles error and does sopme minor checking for issues
         function(err, result) {
            assert.equal(err, null);

@@ -278,7 +278,7 @@ function sortTodisplay(reviews){
      console.log(usersInDb)
      var s = $("#agent")
      for(item in usersInDb){
-       $('<option />', {value:item, text:item}).appendTo(s);
+       $('<option />', {value:item.email, text:item}).appendTo(s);
      }
     //  $('#start').val(lastWeek)
     // $('#end').val()

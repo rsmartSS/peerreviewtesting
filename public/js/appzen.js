@@ -331,11 +331,12 @@ function sortbyDateRange(start, end, agent){
 
 function sortByname(cases,agent){
   var sortedcases =[]
-  var name = agent.toLowerCase()
+  // var name = agent.toLowerCase()
+  var name = agent
 
   cases.forEach( function(item){
-    var caseName= undefined ? "hold" :item.firstName
-      if(caseName.toLowerCase() == name){
+    var caseName= undefined ? "hold" :item.firstName;
+      if(caseName == name){
         sortedcases.push(item)
 
       }

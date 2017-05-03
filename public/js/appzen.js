@@ -275,7 +275,6 @@ function callDb(){
 function sortTodisplay(reviews){
      allReviews = reviews
      var usersInDb = arrayDupes("firstName",allReviews)
-     console.log(usersInDb)
      var s = $("#agent")
      for(item in usersInDb){
        $('<option />', {value:item.email, text:item}).appendTo(s);
@@ -334,17 +333,22 @@ function sortByname(cases,agent){
   var sortedcases =[]
   var name = agent.toLowerCase()
 
+  cases.forEach( function(item){
+    var caseName= undefined ? "hold" :item.firstName
+      if(caseName.toLowerCase() == name){
+        sortedcases.push(item)
 
-  for(x= 1; x < cases.length ; ++x){
-      var caseName = cases[x].firstName
-      var compareName = caseName.toLowerCase()
+      }
 
-          if( compareName == name){
-           sortedcases.push(cases[x])
-       }
+  })
+  // for(x= 1; x < cases.length ; ++x){
+  //     var caseName = cases[x].firstName.toLowerCase();
+  //         if( caseName == name){
+  //          sortedcases.push(cases[x])
+  //      }
 
 
-  }
+  // }
 
 
 if(sortedcases.length > 0){

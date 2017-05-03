@@ -252,6 +252,7 @@ input[name="email"] {
   #showTimeReview table td{
      color: #fff;
      padding:10px;
+     text-transform: capitalize;
   }
   #search{
     background-color: #4C4C4C;

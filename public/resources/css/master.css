@@ -164,18 +164,14 @@ button{
 textarea, input{
   color: #000 !important;
 }
-input[name="firstname"] {
-  margin-left: 5px;
-   }
-input[name="lastname"] {
-   margin-left: 9px;
-   }
-input[name="email"] {
-    margin-left: 7px;
-   }
 
+#userinfo input{
+  margin:5px;
+}
 
-
+#userinfo label{
+  margin: 8px;
+}
 /*thank you page */
 .thanks{
   text-align: center;

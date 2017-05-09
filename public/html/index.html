@@ -134,12 +134,27 @@
 
                            <form class="reviewForm" action="/reviewed" method="post">
                             <fieldset id="userinfo">
-                               <label for="interpatation">First Name:</label>
-                               <input type="text" name="firstname" required><br/>
-                               <label for="last_name">Last Name:</label>
-                               <input type="text" name="lastname" required><br/>
-                               <label for="email">Your Email:</label>
-                               <input type="text" name="email" required><br/>
+
+                            <table cellpadding="10">
+                             <tbody>
+                               <tr>
+                                <td>
+                              <label for="interpatation">First Name:</label><br>
+                              <label for="last_name">Last Name:</label><br>
+                              <label for="email">Your Email:</label><br>
+                            </td>
+
+                                <td>
+                                <input type="text" name="firstname" required><br/>
+
+                                <input type="text" name="lastname" required><br/>
+
+                                <input type="text" name="email" required><br/>
+                                </td>
+                              </tr>
+                            </tbody></table>
+
+
                             </fieldset>
                             <fieldset>
                               <table>

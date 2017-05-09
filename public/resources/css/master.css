@@ -1,5 +1,5 @@
 body {
-    padding-top: 70px;
+    padding-top: 10px;
     /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
   background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
   background-size: cover;
@@ -28,6 +28,7 @@ body {
   letter-spacing: 2px;
   font-weight: 300 !important;
   text-rendering: optimizeLegibility;
+  margin-bottom: 40px;
 }
 .box2{
   width: 400px;
@@ -39,9 +40,9 @@ body {
 .load-text-box{
   width: 500px;
   height: 400px;
-  -webkit-box-shadow: -2px 1px 14px 9px rgba(0,0,0,0.44);
-  -moz-box-shadow: -2px 1px 14px 9px rgba(0,0,0,0.44);
-  box-shadow: -2px 1px 14px 9px rgba(0,0,0,0.44);
+  -webkit-box-shadow: -2px 1px 14px 9px rgba(0,0,0,0.22);
+  -moz-box-shadow: -2px 1px 14px 9px rgba(0,0,0,0.22);
+  box-shadow: -2px 1px 14px 9px rgba(0,0,0,0.22);
 }
 .load-text-box ul{
   list-style: none;

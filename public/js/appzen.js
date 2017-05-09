@@ -176,6 +176,7 @@ function doit(data){
        id:roleAgent.id
   }
   var fullthread = buildComment(comments, total) //[]
+  console.log(fullthread)
   showTime2(fullthread,user)
 
 }
@@ -185,7 +186,7 @@ function buildComment(comments, total){
      var thread= []
 
   for (var x = 0; x < total; x++){
-      thread.push(comments[x].plain_body)
+      thread.push({comment:comments[x].plain_body,public:comments[x].public})
   }
      return thread
 }
@@ -308,7 +309,7 @@ function sortbyDateRange(start, end, agent){
    for(x= 1; x <allReviews.length; ++x){
           var caseDate = new Date(allReviews[x].submissonDate)
 
-        if( caseDate > dateStart && caseDate< dateEnd){
+        if( caseDate >= dateStart && caseDate <= dateEnd){
             cases.push(allReviews[x])
                }
    }

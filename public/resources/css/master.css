@@ -17,7 +17,7 @@ body {
   width: 55%;
 }
 .box{
-  width: 400px;
+  width: 500px;
   height: 200px;
    color: #fff;
 
@@ -51,7 +51,11 @@ body {
 .load-text-box a{
   text-decoration: none;
   color: #fff;
+  line-height: 2;
 
+}
+.load-text-box a:hover{
+  color:#84C340;
 }
 
 /*button styling*/
@@ -62,6 +66,7 @@ body {
     font-weight: 300;
     text-decoration: none;
     border-radius: 200px;
+    width: 400px;
     transition: background-color 0.2s, border 0.2s, color 0.2s;
 
 }
@@ -101,13 +106,18 @@ body {
 .comments{
   color: #fff;
   text-align: left;
+  line-height: 2;
 }
 .commentHolder{
   display: block;
    border: #777 1px solid;
    padding:10px;
 }
-
+.false{
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  border-radius: 3px;
+}
 /*styling for response*/
 
 
@@ -136,10 +146,13 @@ body {
 .reviewForm label{
   color:#fff;
 }
-fieldset span {
+td span {
   margin-right: 5px;
   margin-left: 5px;
   color: #fff;
+}
+fieldset{
+  margin: 10px;
 }
 button{
   color: #000;

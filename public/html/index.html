@@ -41,10 +41,13 @@
         </div>
         <!-- /.row -->
         <div class="row">
-          <div class="col-lg-6 col-md-6 text-left">
+          <div class="col-lg-6 col-md-6 text-center">
             <div class="box">
-              <h1>Goodbye SILOS.<br> Hello Super Support.</h1>
-              <a class="btn btn-full" id='click' href="#" >Get Cases</a>
+              <h1>Goodbye mediocrity. Hello Super Support.</h1>
+              <center>
+                <a class="btn btn-full" id='click' href="#" >Get Cases</a>
+
+              </center>
             </div>
           </div>
           <div class="col-lg-6 col-md-6">
@@ -62,6 +65,8 @@
           <div class="col-lg-12">
             <center>
               <div class="chossen" id="output2">
+
+
 
 
                </div>
@@ -114,7 +119,7 @@
 
                         <div class="commentHolder">
                         {{#each comment }}
-                         <p style="color:#fff;" class="comments">{{this}}</p>
+                         <p style="color:#fff;" class="comments {{this.public}}">{{this.comment}}</p>
                         <hr/>
                         {{/each}}
                         </div>
@@ -136,46 +141,49 @@
                                <label for="email">Your Email:</label>
                                <input type="text" name="email" required><br/>
                             </fieldset>
-                            <fieldset id="interpatation">
-                            <span class="glyphicon glyphicon-question-sign"  data-placement="right" title="Did the Support Engineer understand what the customer was asking and did they provide a relevant answer. as well as a reason for the answer and supporting materials such as help articles.
-           " ></span>
-                              <label for="interpretation">Interpretation</label>
-                              <span>1</span><input type="radio"  id="1" name="interpretation" value="1"  required>
-                              <span>2</span><input type="radio"  id="2" name="interpretation" value="2">
-                              <span>3</span><input type="radio"  id="3" name="interpretation" value="3">
-                              <span>4</span><input type="radio"  id="4" name="interpretation" value="4">
-                              <span>5</span><input type="radio"  id="5" name="interpretation" value="5">
-                            </fieldset>
-                            <fieldset id="effort">
-                            <span class="glyphicon glyphicon-question-sign"  data-placement="right" title="Did the Support Engineer offer a reason for their answer (the “why?”) along with support materials such as help articles and did they seem invested in finding a resolve.
-           "></span>
-                              <label for="effort">Effort</label>
-                              <span>1</span><input type="radio" id="1" name="Effort" value="1" required>
-                              <span>2</span><input type="radio"  id="2" name="Effort" value="2">
-                              <span>3</span><input type="radio"  id="3" name="Effort" value="3">
-                              <span>4</span><input type="radio"  id="4" name="Effort" value="4">
-                              <span>5</span><input type="radio"  id="5" name="Effort" value="5">
+                            <fieldset>
+                              <table>
+                                <tr>
+                                  <td><label for="interpretation">Interpretation</label></td>
+                                  <td><span>1</span><input type="radio"  id="1" name="interpretation" value="1"  required></td>
+                                  <td><span>2</span><input type="radio"  id="2" name="interpretation" value="2"></td>
+                                  <td><span>3</span><input type="radio"  id="3" name="interpretation" value="3"></td>
+                                  <td><span>4</span><input type="radio"  id="4" name="interpretation" value="4"></td>
+                                  <td><span>5</span><input type="radio"  id="5" name="interpretation" value="5"></td>
+                                  <td> <span class="glyphicon glyphicon-question-sign"  data-placement="right" title="Did the Support Engineer understand what the customer was asking and did they provide a relevant answer. as well as a reason for the answer and supporting materials such as help articles." ></span></td>
+                                </tr>
+                                <tr>
 
+                                 <td><label for="effort">Effort</label></td>
+                                <td><span>1</span><input type="radio" id="1" name="Effort" value="1" required></td>
+                                <td> <span>2</span><input type="radio"  id="2" name="Effort" value="2"></td>
+                                <td><span>3</span><input type="radio"  id="3" name="Effort" value="3"></td>
+                                <td><span>4</span><input type="radio"  id="4" name="Effort" value="4"></td>
+                                <td><span>5</span><input type="radio"  id="5" name="Effort" value="5"></td>
+                                <td> <span class="glyphicon glyphicon-question-sign"  data-placement="right" title="Did the Support Engineer offer a reason for their answer (the “why?”) along with support materials such as help articles and did they seem invested in finding a resolve.
+                "></span></td></tr>
+                               <tr>
+                                  <td><label for="knowledge">Knowledge</label></td>
+                                  <td><span>1</span><input type="radio"  id="1" name="knowledge" value="1" required></td>
+                                  <td><span>2</span><input type="radio"  id="2" name="knowledge" value="2"></td>
+                                  <td><span>3</span><input type="radio"  id="3" name="knowledge" value="3"></td>
+                                  <td><span>4</span><input type="radio"  id="4" name="knowledge" value="4"></td>
+                                  <td><span>5</span><input type="radio"  id="5" name="knowledge" value="5"></td>
+                                  <td> <span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right" title="Did the Support Engineer demonstrate strong knowledge in the subject area?"></span></td>
+                               </tr>
+                               <tr>
+                                 <td><label for="soft_skills">Soft Skills</label></td>
+                                 <td><span>1</span><input type="radio"  id="1" name="soft_skills" value="1" required></td>
+                                 <td><span>2</span><input type="radio"  id="2" name="soft_skills" value="2"></td>
+                                 <td><span>3</span><input type="radio"  id="3" name="soft_skills" value="3"></td>
+                                 <td> <span>4</span><input type="radio"  id="4" name="soft_skills" value="4"></td>
+                                 <td> <span>5</span><input type="radio"  id="5" name="soft_skills" value="5"></td>
+                                 <td><span class="glyphicon glyphicon-question-sign" data-placement="right" title="“Did the support engineer connect with and address the emotional content behind the request?”
+                "></span></td>
+                               </tr>
+                              </table>
                             </fieldset>
-                            <fieldset id="knowledge">
-                             <span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right" title="Did the Support Engineer demonstrate strong knowledge in the subject area?"></span>
-                              <label for="knowledge">Knowledge</label>
-                              <span>1</span><input type="radio"  id="1" name="knowledge" value="1" required>
-                              <span>2</span><input type="radio"  id="2" name="knowledge" value="2">
-                              <span>3</span><input type="radio"  id="3" name="knowledge" value="3">
-                              <span>4</span><input type="radio"  id="4" name="knowledge" value="4">
-                              <span>5</span><input type="radio"  id="5" name="knowledge" value="5">
-                            </fieldset>
-                            <fieldset id="soft_skills">
-                            <span class="glyphicon glyphicon-question-sign" data-placement="right" title="“Did the support engineer connect with and address the emotional content behind the request?”
-           "></span>
-                              <label for="soft_skills">Soft Skills</label>
-                              <span>1</span><input type="radio"  id="1" name="soft_skills" value="1" required>
-                              <span>2</span><input type="radio"  id="2" name="soft_skills" value="2">
-                              <span>3</span><input type="radio"  id="3" name="soft_skills" value="3">
-                              <span>4</span><input type="radio"  id="4" name="soft_skills" value="4">
-                              <span>5</span><input type="radio"  id="5" name="soft_skills" value="5">
-                            </fieldset>
+
                             <fieldset>
                               <label for="doWell">What did the case owner do well?</label>
                                 <br> <textarea name="doWell" rows="2" cols="50" required></textarea>

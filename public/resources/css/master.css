@@ -15,6 +15,7 @@ body {
 }
 .logo{
   width: 55%;
+  margin-bottom: 40px;
 }
 .box{
   width: 500px;
@@ -29,6 +30,7 @@ body {
   font-weight: 300 !important;
   text-rendering: optimizeLegibility;
   margin-bottom: 40px;
+  margin-top: 0px;
 }
 .box2{
   width: 400px;

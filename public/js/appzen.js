@@ -122,7 +122,6 @@ function cycleThrough(resp){
      for (var x = 0; x < 10; x++){
      	   var randCase = Math.floor(Math.random() * (respLength + 1)) || 42
          var caseTag = resp.results[randCase].tags.find(findTag) || null
-          console.log(caseTag)
          if(caseTag){
            x = x - 1
          }
@@ -186,7 +185,8 @@ function buildComment(comments, total){
      var thread= []
 
   for (var x = 0; x < total; x++){
-      thread.push({comment:comments[x].plain_body,public:comments[x].public,date:Date(comments[x].created_at)} )
+      var date = new Date(comments[x].created_at);
+      thread.push({comment:comments[x].plain_body,public:comments[x].public,date:date} )
   }
      return thread
 }

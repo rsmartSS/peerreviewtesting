@@ -186,7 +186,7 @@ function buildComment(comments, total){
      var thread= []
 
   for (var x = 0; x < total; x++){
-      thread.push({comment:comments[x].plain_body,public:comments[x].public})
+      thread.push({comment:comments[x].plain_body,public:comments[x].public,date:Date(comments[x].created_at)} )
   }
      return thread
 }
@@ -387,7 +387,7 @@ function sortStructure(){
  var startDate = $('#start').val()
  var endDate = $('#end').val()
  var agent = $('#agent').val()
- console.log(agent)
+ console.log(startDate)
 
  if(startDate)
 {
@@ -395,7 +395,8 @@ function sortStructure(){
 
 }
 else{
-   alert('Start date is missing, brah')
+  sortbyDateRange( '03/01/2017', today, agent)
+
 }
 }
 function arrayDupes(propertyName, inputArray){

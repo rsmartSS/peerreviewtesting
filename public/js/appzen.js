@@ -231,14 +231,13 @@ if($("#thanks").length){
   //  setTimeout(function () {
   //     window.location.href = "/";
   //  }, 10000);
-  //  $.ajax({
-  //       type: 'POST',
-  //       url: '/giphyThanks',
-  //       success: showTimeThanks,
-  //       error: errorHandler,
-  //       dataType: 'json'
-  //     });
-  showTimeThanks()
+   $.ajax({
+        type: 'POST',
+        url: '/giphyThanks',
+        success: showTimeThanks,
+        error: errorHandler,
+        dataType: 'json'
+      });
 }
 else{
   return
@@ -249,7 +248,7 @@ else{
 
 function showTimeThanks(data){
      var thankInfo = {
-       url:    "https://media.giphy.com/media/1ofR3QioNy264/giphy.gif"//data.data.image_url
+       url:data.data.image_url
      }
 
     var source = $('#randomThanks').html()

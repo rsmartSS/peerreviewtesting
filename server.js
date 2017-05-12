@@ -162,12 +162,9 @@ const dbURl = 'mongodb://adminLP:'+mongopass+'@cluster0-shard-00-00-5pp3g.mongod
         var subDate = new Date().toDateString()
         //call current collection
         var collection = db.collection('weeklyReview')
-         var fName =data.firstname.toLowerCase();
-        // fName = fName.replace(/\s/g, '');
-        var lName = data.lastName.toLowerCase();
-        // lName = lName.replace(/\s/g, '');
+
         //add record ß
-        collection.insertOne({submissonDate: subDate,email: data.email , firstName: fName , lastName:lName, reveiwedName: data.Rname, case: data.case, Interpretation:data.interpretation ,effort: data.Effort, knowledge: data.knowledge, softskill: data.soft_skills, overall: average, commentDoWell:data.doWell, commentImprove: data.improve, commentDifferent:data.diff, commentLearn: data.learn },
+        collection.insertOne({submissonDate: subDate,email: data.email , firstName:data.firstname, lastName:data.lastName, reveiwedName: data.Rname, case: data.case, Interpretation:data.interpretation ,effort: data.Effort, knowledge: data.knowledge, softskill: data.soft_skills, overall: average, commentDoWell:data.doWell, commentImprove: data.improve, commentDifferent:data.diff, commentLearn: data.learn },
         //handles error and does sopme minor checking for issues
         function(err, result) {
            assert.equal(err, null);

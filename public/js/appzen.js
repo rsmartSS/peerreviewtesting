@@ -278,6 +278,7 @@ function callDb(){
 //sort to display the reviews from last week
 function sortTodisplay(reviews){
      allReviews = reviews
+     console.log(reviews)
      var usersInDb = arrayDupes("firstName",allReviews)
     //  console.log(allReviews)
      var s = $("#agent")
@@ -337,15 +338,15 @@ function sortbyDateRange(start, end, agent){
 
 function sortByname(cases,agent){
   var sortedcases =[]
-  // var name = agent.toLowerCase()
   var Fname = agent.split(" ")[0].replace(/\s/g, '').toLowerCase()
   var Lname = agent.split(" ")[1].replace(/\s/g, '').toLowerCase()
-  console.log("Agent search", Lname)
 
   cases.forEach( function(item){
     var casefName= undefined ? "hold" :item.firstName;
     var caselName= undefined ? "hold" :item.lastName;
-
+     caselName = undefined ? "blank": caselName.replace(/\s/g, '').toLowerCase()
+     casefName = undefined ? "blank": casefName.replace(/\s/g, '').toLowerCase()
+    //  console.log(casefName)
       if(casefName == Fname&& caselName == Lname){
         sortedcases.push(item)
 
@@ -396,7 +397,6 @@ function sortStructure(){
  var startDate = $('#start').val()
  var endDate = $('#end').val()
  var agent = $('#agent').val()
- console.log(startDate)
 
  if(startDate)
 {
@@ -408,14 +408,14 @@ else{
 
 }
 }
+//sorts for duplicate names that get placed in dropdown
 function arrayDupes(propertyName, inputArray){
   var seenDuplicate = false,
     testObject = {};
 
     inputArray.map(function(item){
-      console.log(item['lastName'])
-      var itemPropertyName = item[propertyName]
-      var itemPropertyNameL= item['lastName']
+      var itemPropertyName = item[propertyName].toLowerCase()
+      var itemPropertyNameL= item['lastName'].toLowerCase()
       if (itemPropertyName in testObject && itemPropertyNameL in testObject){
         testObject[itemPropertyName].duplicate = true;
         item.duplicate = true

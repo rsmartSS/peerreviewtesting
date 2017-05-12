@@ -162,10 +162,10 @@ const dbURl = 'mongodb://adminLP:'+mongopass+'@cluster0-shard-00-00-5pp3g.mongod
         var subDate = new Date().toDateString()
         //call current collection
         var collection = db.collection('weeklyReview')
-         var fName =data.firstname.toLowerCase()
-        fName = fName.replace(/\s/g, '')
-        var lName = data.lastName.toLowerCase()
-        lName = lName.replace(/\s/g, '')
+         var fName =data.firstname.toLowerCase();
+        // fName = fName.replace(/\s/g, '');
+        var lName = data.lastName.toLowerCase();
+        // lName = lName.replace(/\s/g, '');
         //add record ß
         collection.insertOne({submissonDate: subDate,email: data.email , firstName: fName , lastName:lName, reveiwedName: data.Rname, case: data.case, Interpretation:data.interpretation ,effort: data.Effort, knowledge: data.knowledge, softskill: data.soft_skills, overall: average, commentDoWell:data.doWell, commentImprove: data.improve, commentDifferent:data.diff, commentLearn: data.learn },
         //handles error and does sopme minor checking for issues
@@ -220,9 +220,9 @@ const dbURl = 'mongodb://adminLP:'+mongopass+'@cluster0-shard-00-00-5pp3g.mongod
            var  email={
                         "FromEmail":"sspeerreview@gmail.com",
                         "FromName":"Super Support",
-                        "Subject":"One of your casees got reviewed!!",
+                        "Subject":"One of your cases got reviewed!!",
                         "Text-part":"!",
-                        "Html-part":  "<h3>Hey, "+data.firstname+" reviwed case#: "+data.case+"!</h3>Average Score: "+avgScore+"<br>knowledge: "+data.knowledge+"<br>Effort: "+data.Effort+"<br>Interpretation: "+data.interpretation+"<br>Soft Skills: "+data.soft_skills+"<br>What you did well: <br><br>"+data.doWell+"<br> What you can imporve:<br><br>"+data.improve+"<br>What they would have done differently:<br><br>"+data.diff+"<br>What they learned from your case:<br><br>"+data.learn,
+                        "Html-part":  "<h3>Hey, "+data.firstname+" reviewed case#: "+data.case+"!</h3>Average Score: "+avgScore+"<br>knowledge: "+data.knowledge+"<br>Effort: "+data.Effort+"<br>Interpretation: "+data.interpretation+"<br>Soft Skills: "+data.soft_skills+"<br>What you did well: <br><br>"+data.doWell+"<br> What you can imporve:<br><br>"+data.improve+"<br>What they would have done differently:<br><br>"+data.diff+"<br>What they learned from your case:<br><br>"+data.learn,
                         "Recipients":[{"Email":data.Remail}]
                        }
 

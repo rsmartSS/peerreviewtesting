@@ -231,13 +231,14 @@ if($("#thanks").length){
    setTimeout(function () {
       window.location.href = "/"; //will redirect to your blog page (an ex: blog.html)
    }, 10000);
-   $.ajax({
-        type: 'POST',
-        url: '/giphyThanks',
-        success: showTimeThanks,
-        error: errorHandler,
-        dataType: 'json'
-      });
+  //  $.ajax({
+  //       type: 'POST',
+  //       url: '/giphyThanks',
+  //       success: showTimeThanks,
+  //       error: errorHandler,
+  //       dataType: 'json'
+  //     });
+  showTimeThanks()
 }
 else{
   return
@@ -248,7 +249,7 @@ else{
 
 function showTimeThanks(data){
      var thankInfo = {
-       url:data.data.image_url
+       url:    "https://media.giphy.com/media/1ofR3QioNy264/giphy.gif"//data.data.image_url
      }
 
     var source = $('#randomThanks').html()
@@ -279,10 +280,10 @@ function callDb(){
 function sortTodisplay(reviews){
      allReviews = reviews
      var usersInDb = arrayDupes("firstName",allReviews)
-     console.log(allReviews)
+    //  console.log(allReviews)
      var s = $("#agent")
      for(item in usersInDb){
-       console.log(item)
+
        $('<option />', {text:item}).appendTo(s);
      }
     //  $('#start').val(lastWeek)
@@ -322,7 +323,7 @@ function sortbyDateRange(start, end, agent){
 
   if(agent){
 
-    console.log("call agent sort")
+    // console.log("call agent sort")
     sortByname(cases,agent)
 
   }
@@ -338,11 +339,15 @@ function sortbyDateRange(start, end, agent){
 function sortByname(cases,agent){
   var sortedcases =[]
   // var name = agent.toLowerCase()
-  var name = agent
+  var Fname = agent.split(" ")[0]
+  var Lname = agent.split(" ")[1]
+  // console.log("Agent search", Lname)
 
   cases.forEach( function(item){
-    var caseName= undefined ? "hold" :item.firstName;
-      if(caseName == name){
+    var casefName= undefined ? "hold" :item.firstName;
+    var caselName= undefined ? "hold" :item.lastName;
+
+      if(casefName == Fname && caselName == Lname){
         sortedcases.push(item)
 
       }
@@ -409,15 +414,16 @@ function arrayDupes(propertyName, inputArray){
     testObject = {};
 
     inputArray.map(function(item){
-      console.log(item)
+      console.log(item['lastName'])
       var itemPropertyName = item[propertyName]
-      if (itemPropertyName in testObject){
+      var itemPropertyNameL= item['lastName']
+      if (itemPropertyName in testObject && itemPropertyNameL in testObject){
         testObject[itemPropertyName].duplicate = true;
         item.duplicate = true
         sendDuplicate = true;
       }
       else{
-        testObject[itemPropertyName]= item;
+        testObject[itemPropertyName+" "+itemPropertyNameL]= item;
         delete item.duplicate;
       }
     });

@@ -186,7 +186,7 @@ function buildComment(comments, total){
 
   for (var x = 0; x < total; x++){
       var date = new Date(comments[x].created_at);
-      thread.push({comment:comments[x].plain_body,public:comments[x].public,date:date} )
+      thread.push({comment:comments[x].plain_body.replace('&gt;', ''),public:comments[x].public,date:date} )
   }
      return thread
 }
@@ -228,9 +228,9 @@ function callGiphy(){
 
 if($("#thanks").length){
    console.log("thank you page")
-  //  setTimeout(function () {
-  //     window.location.href = "/";
-  //  }, 10000);
+   setTimeout(function () {
+      window.location.href = "/";
+   }, 10000);
    $.ajax({
         type: 'POST',
         url: '/giphyThanks',
@@ -338,15 +338,15 @@ function sortbyDateRange(start, end, agent){
 function sortByname(cases,agent){
   var sortedcases =[]
   // var name = agent.toLowerCase()
-  var Fname = agent.split(" ")[0]
-  var Lname = agent.split(" ")[1]
-  // console.log("Agent search", Lname)
+  var Fname = agent.split(" ")[0].replace(/\s/g, '').toLowerCase()
+  var Lname = agent.split(" ")[1].replace(/\s/g, '').toLowerCase()
+  console.log("Agent search", Lname)
 
   cases.forEach( function(item){
     var casefName= undefined ? "hold" :item.firstName;
     var caselName= undefined ? "hold" :item.lastName;
 
-      if(casefName == Fname && caselName == Lname){
+      if(casefName == Fname&& caselName == Lname){
         sortedcases.push(item)
 
       }

@@ -279,9 +279,11 @@ function callDb(){
 function sortTodisplay(reviews){
      allReviews = reviews
      var usersInDb = arrayDupes("firstName",allReviews)
+     console.log(allReviews)
      var s = $("#agent")
      for(item in usersInDb){
-       $('<option />', {value:item.email, text:item}).appendTo(s);
+       console.log(item)
+       $('<option />', {text:item}).appendTo(s);
      }
     //  $('#start').val(lastWeek)
     // $('#end').val()
@@ -407,6 +409,7 @@ function arrayDupes(propertyName, inputArray){
     testObject = {};
 
     inputArray.map(function(item){
+      console.log(item)
       var itemPropertyName = item[propertyName]
       if (itemPropertyName in testObject){
         testObject[itemPropertyName].duplicate = true;

@@ -228,6 +228,9 @@ function callGiphy(){
 
 if($("#thanks").length){
    console.log("thank you page")
+   setTimeout(function () {
+      window.location.href = "/"; //will redirect to your blog page (an ex: blog.html)
+   }, 10000);
    $.ajax({
         type: 'POST',
         url: '/giphyThanks',

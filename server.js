@@ -164,7 +164,7 @@ const dbURl = 'mongodb://adminLP:'+mongopass+'@cluster0-shard-00-00-5pp3g.mongod
         var collection = db.collection('weeklyReview')
 
         //add record ß
-        collection.insertOne({submissonDate: subDate,email: data.email , firstName:data.firstname, lastName:data.lastname, reveiwedName: data.Rname, case: data.case, Interpretation:data.interpretation ,effort: data.Effort, knowledge: data.knowledge, softskill: data.soft_skills, overall: average, commentDoWell:data.doWell, commentImprove: data.improve, commentDifferent:data.diff, commentLearn: data.learn },
+        collection.insertOne({submissonDate: subDate,email: data.email , firstName:data.firstname, lastName:data.lastname, reveiwedName: data.Rname, case: data.case, Interpretation:data.interpretation ,effort: data.Effort, knowledge: data.knowledge, softskill: data.soft_skills,responsiveness: data.responsiveness, overall: average, commentDoWell:data.doWell, commentImprove: data.improve, commentDifferent:data.diff, commentLearn: data.learn },
         //handles error and does sopme minor checking for issues
         function(err, result) {
            assert.equal(err, null);
@@ -203,8 +203,10 @@ const dbURl = 'mongodb://adminLP:'+mongopass+'@cluster0-shard-00-00-5pp3g.mongod
         var interp = parseInt(data.interpretation),
              knowledge =   parseInt(data.knowledge),
              effort = parseInt(data.Effort),
-             skills =parseInt(data.soft_skills)
-        var total = interp + knowledge + effort + skills
+             skills =parseInt(data.soft_skills),
+             resp = parseInt(data.responsiveness)
+             console.log(resp)
+        var total = interp + knowledge + effort + skills +resp
         var average = total / 4
           return average
       }
@@ -219,7 +221,7 @@ const dbURl = 'mongodb://adminLP:'+mongopass+'@cluster0-shard-00-00-5pp3g.mongod
                         "FromName":"Super Support",
                         "Subject":"One of your cases got reviewed!!",
                         "Text-part":"!",
-                        "Html-part":  "<h3>Hey, "+data.firstname+" reviewed case#: "+data.case+"!</h3>Average Score: "+avgScore+"<br>knowledge: "+data.knowledge+"<br>Effort: "+data.Effort+"<br>Interpretation: "+data.interpretation+"<br>Soft Skills: "+data.soft_skills+"<br>What you did well: <br><br>"+data.doWell+"<br> What you can imporve:<br><br>"+data.improve+"<br>What they would have done differently:<br><br>"+data.diff+"<br>What they learned from your case:<br><br>"+data.learn,
+                        "Html-part":  "<h3>Hey, "+data.firstname+" reviewed case#: "+data.case+"!</h3>Average Score: "+avgScore+"<br>knowledge: "+data.knowledge+"<br>Effort: "+data.Effort+"<br>Interpretation: "+data.interpretation+"<br>Soft Skills: "+data.soft_skills+"<br>Responsiveness:"+data.responsiveness+"<br>What you did well: <br><br>"+data.doWell+"<br> What you can imporve:<br><br>"+data.improve+"<br>What they would have done differently:<br><br>"+data.diff+"<br>What they learned from your case:<br><br>"+data.learn,
                         "Recipients":[{"Email":data.Remail}]
                        }
 

@@ -290,7 +290,7 @@ textarea, input{
   .form-inline, #gosearch{
     display: inline-block;
   }
-
+  #agent option{ text-transform: capitalize;}
 
   /*#ui-datepicker-div{
     background-color: #fff;

@@ -207,7 +207,7 @@ const dbURl = 'mongodb://adminLP:'+mongopass+'@cluster0-shard-00-00-5pp3g.mongod
              resp = parseInt(data.responsiveness)
              console.log(resp)
         var total = interp + knowledge + effort + skills +resp
-        var average = total / 4
+        var average = total / 5
           return average
       }
 

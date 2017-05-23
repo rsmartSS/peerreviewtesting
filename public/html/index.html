@@ -69,6 +69,7 @@
 
 
 
+
                </div>
                </center>
               </div>
@@ -140,76 +141,134 @@
                              <tbody>
                                <tr>
                                 <td>
-                              <label for="interpatation">First Name:</label><br>
-                              <label for="last_name">Last Name:</label><br>
-                              <label for="email">Your Email:</label><br>
-                            </td>
+                                 <label for="agent">Agent reviewing</label><br>
+                               </td>
 
                                 <td>
-                                <input type="text" name="firstname" required><br/>
+                                <select   name="agent" required>
+                                  <option selected disabled >select your name</option>
+
+                                </select>
+                                <!-- <input type="text" name="firstname" required><br/>
 
                                 <input type="text" name="lastname" required><br/>
 
-                                <input type="text" name="email" required><br/>
+                                <input type="text" name="email" required><br/> -->
                                 </td>
                               </tr>
                             </tbody></table>
-
-
-                            </fieldset>
-                            <fieldset>
-                              <table>
+                            <table>
+                              <tbody>
                                 <tr>
-                                  <td><label for="interpretation">Interpretation</label></td>
-                                  <td><span>1</span><input type="radio"  id="1" name="interpretation" value="1"  required></td>
-                                  <td><span>2</span><input type="radio"  id="2" name="interpretation" value="2"></td>
-                                  <td><span>3</span><input type="radio"  id="3" name="interpretation" value="3"></td>
-                                  <td><span>4</span><input type="radio"  id="4" name="interpretation" value="4"></td>
-                                  <td><span>5</span><input type="radio"  id="5" name="interpretation" value="5"></td>
-                                  <td> <span class="glyphicon glyphicon-question-sign"  data-placement="right" title="Did the Support Engineer understand what the customer was asking and did they provide a relevant answer. as well as a reason for the answer and supporting materials such as help articles." ></span></td>
+                                  <td><label for="understand">Did the engineer understand the customer’s request? If not, did they request clarification?</label> </td>
                                 </tr>
                                 <tr>
-
-                                 <td><label for="effort">Effort</label></td>
-                                <td><span>1</span><input type="radio" id="1" name="Effort" value="1" required></td>
-                                <td> <span>2</span><input type="radio"  id="2" name="Effort" value="2"></td>
-                                <td><span>3</span><input type="radio"  id="3" name="Effort" value="3"></td>
-                                <td><span>4</span><input type="radio"  id="4" name="Effort" value="4"></td>
-                                <td><span>5</span><input type="radio"  id="5" name="Effort" value="5"></td>
-                                <td> <span class="glyphicon glyphicon-question-sign"  data-placement="right" title="Did the Support Engineer offer a reason for their answer (the “why?”) along with support materials such as help articles and did they seem invested in finding a resolve.
-                "></span></td></tr>
-                               <tr>
-                                  <td><label for="knowledge">Knowledge</label></td>
-                                  <td><span>1</span><input type="radio"  id="1" name="knowledge" value="1" required></td>
-                                  <td><span>2</span><input type="radio"  id="2" name="knowledge" value="2"></td>
-                                  <td><span>3</span><input type="radio"  id="3" name="knowledge" value="3"></td>
-                                  <td><span>4</span><input type="radio"  id="4" name="knowledge" value="4"></td>
-                                  <td><span>5</span><input type="radio"  id="5" name="knowledge" value="5"></td>
-                                  <td> <span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right" title="Did the Support Engineer demonstrate strong knowledge in the subject area?"></span></td>
-                               </tr>
-                               <tr>
-                                 <td><label for="soft_skills">Soft Skills</label></td>
-                                 <td><span>1</span><input type="radio"  id="1" name="soft_skills" value="1" required></td>
-                                 <td><span>2</span><input type="radio"  id="2" name="soft_skills" value="2"></td>
-                                 <td><span>3</span><input type="radio"  id="3" name="soft_skills" value="3"></td>
-                                 <td> <span>4</span><input type="radio"  id="4" name="soft_skills" value="4"></td>
-                                 <td> <span>5</span><input type="radio"  id="5" name="soft_skills" value="5"></td>
-                                 <td><span class="glyphicon glyphicon-question-sign" data-placement="right" title="Did the support engineer connect with and address the emotional content behind the request?”
-                "></span></td>
-                               </tr>
-                               <tr>
-                                <td><label for="responsiveness">Responsiveness</label></td>
-                               <td><span>1</span><input type="radio"  id="1" name="responsiveness" value="1" required></td>
-                               <td><span>2</span><input type="radio"  id="2" name="responsiveness" value="2"></td>
-                               <td><span>3</span><input type="radio"  id="3" name="responsiveness" value="3"></td>
-                               <td> <span>4</span><input type="radio"  id="4" name="responsiveness" value="4"></td>
-                               <td> <span>5</span><input type="radio"  id="5" name="responsiveness" value="5"></td>
-                               <td><span class="glyphicon glyphicon-question-sign" data-placement="right" title="Did the support engineer respond quickly to the case?"></span></td>
-                               </tr>
+                                  <td><input type="radio" name="understand" value="Yes"><label for="understand">Yes</label><input type="radio" name="understand" value="No"><label for="understand">No</label></td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <label for="helpArticle">Did the engineer link a help article?</label>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td><input type="radio" name="helpArticle" value="Yes"><label for="helpArticle">Yes</label><input type="radio" name="helpArticle" value="No"><label for="helpArticle">No</label></td>
+                                </tr>
+                                <tr>
+                                  <td><label for="correctArticle">Did the help article specifically address the customer’s question?</label> </td>
+                                </tr>
+                                <tr>
+                                  <td><input type="radio" name="correctArticle" value="Yes"><label for="correctArticle">Yes</label><input type="radio" name="correctArticle" value="No"><label for="correctArticle">No</label></td>
+                                </tr>
+                                <tr>
+                                  <td><label for="verifyArticle"> Did the engineer verify the content when linking it?</label> </td>
+                                </tr>
+                                <tr>
+                                  <td><input type="radio" name="verifyArticle" value="Yes"><label for="verifyArticle">Yes</label><input type="radio" name="verifyArticle" value="No"><label for="verifyArticle">No</label></td>
+                                </tr>
+                                <tr>
+                                  <td><label for="eraser">Was the ERASER method used in this case?</label> </td>
+                                </tr>
+                                <tr>
+                                  <td><input type="radio" name="eraser" value="Yes"><label for="eraser">Yes</label><input type="radio" name="eraser" value="No"><label for="eraser">No</label></td>
+                                </tr>
+                                <tr>
+                                  <td><label for="effectively">Was the ERASER method used effectively?</label> </td>
+                                </tr>
+                                <tr>
+                                  <td><input type="radio" name="effectively" value="Yes"><label for="effectively">Yes</label><input type="radio" name="effectively" value="No"><label for="effectively">No</label></td>
+                                </tr>
+                                <tr>
+                                  <td><label for="doubt"> Should it have been used??</label> </td>
+                                </tr>
+                                <tr>
+                                  <td><input type="radio" name="doubt" value="Yes"><label for="doubt">Yes</label><input type="radio" name="doubt" value="No"><label for="doubt">No</label></td>
+                                </tr>
+                              </tbody>
+                            </table>
+                            </fieldset>
+                            <fieldset >
+                              <table>
+                                <tr>
+                                  <td><label for="responsive">Was the engineer responsive to updates on the case?</label></td>
+                                </tr>
+                                <tr>
+                                  <td><input type="radio" name="responsive" value="1"> <label for="responsive">1 - Poor response times and/or generally not responsive</label></td>
+                                </tr>
+                                <tr>
+                                  <td><input type="radio" name="responsive" value="2"><label for="responsive">2 - Good response yet customer had to repeatedly ask for updates</label></td>
+                                </tr>
+                                <tr>
+                                  <td><input type="radio" name="responsive" value="3"><label for="responsive">3 - Average response times (within 5 hours)</label></td>
+                                </tr>
+                                <tr>
+                                  <td><input type="radio" name="responsive" value="4"><label for="responsive">4 - Quick responses (<2 hours from customer comment)</label></td>
+                                </tr>
+                                <tr>
+                                  <td><input type="radio" name="responsive" value="5"><label for="responsive">5 - Proactively updating customer and giving thoughtful/thorough comments </label></td>
+                                </tr>
                               </table>
                             </fieldset>
+                            <fieldset class="lastSection">
+                              <table>
+                                <tr>
+                                  <td><label for="courtesy">Was the engineer courteous?</label></td>
+                                </tr>
+                                <tr>
+                                  <td><input type="radio" name="courtesy" value="Yes"><label for="courtesy">Yes</label><input type="radio" name="courtesy" value="No"><label for="courtesy">No</label></td>
+                                </tr>
+                                <tr>
+                                  <td><label for="call">Could the case been resolved quicker if the engineer called the customer?</label></td>
+                                </tr>
+                                <tr>
+                                  <td><input type="radio" name="call" value="Yes"><label for="call">Yes</label><input type="radio" name="call" value="No"><label for="call">No</label></td>
+                                </tr>
+                                <tr>
+                                  <td><label for="knowledgeable">Did they appear knowledgeable and helpful?</label></td>
+                                </tr>
+                                <tr>
+                                  <td><input type="radio" name="knowledgeable" value="Yes"><label for="knowledgeable">Yes</label><input type="radio" name="knowledgeable" value="No"><label for="knowledgeable">No</label></td>
+                                </tr>
+                                <tr>
+                                  <td><label for="overall">On a scale of 1-5, overall rating of the case?</label></td>
+                                </tr>
+                                <tr>
+                                  <td><input type="radio" name="overall" value="1"><label for="overall">1</label><input type="radio" name="overall" value="2"><label for="overall">2</label> <input type="radio" name="overall" value="3"><label for="overall">3</label> <input type="radio" name="overall" value="4"><label for="overall">4</label> <input type="radio" name="overall" value="5"><label for="overall">5</label> </td>
+                                </tr>
+                              </table>
 
+
+                            </fieldset>
                             <fieldset>
+                              <label for="why">Why?</label>
+                                <br> <textarea name="why" rows="4" cols="50" required></textarea>
+                            </fieldset>
+                            <fieldset>
+                              <label for="different">What would you have done differently?</label>
+                                <br> <textarea name="improve" rows="4" cols="50" required></textarea>
+                            </fieldset>
+
+
+                            <!-- <fieldset>
                               <label for="doWell">What did the case owner do well?</label>
                                 <br> <textarea name="doWell" rows="2" cols="50" required></textarea>
                             </fieldset>
@@ -224,7 +283,7 @@
                             <fieldset>
                               <label for="learn">What did you learn from reviewing the case?</label>
                                 <br> <textarea name="learn" rows="2" cols="50" required></textarea>
-                            </fieldset>
+                            </fieldset> -->
                             <fieldset>
                             <input type="hidden" name="Rname" value="{{agent}}" />
                             <input type="hidden" name="Remail" value="{{email}}" />

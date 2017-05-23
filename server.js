@@ -221,7 +221,7 @@ const dbURl = 'mongodb://adminLP:'+mongopass+'@cluster0-shard-00-00-5pp3g.mongod
                         "FromName":"PS Peer Review",
                         "Subject":"One of your cases was reviewed!!",
                         "Text-part":"!",
-                        "Html-part":  "<h3>Hey, "+data.firstname+" "+data.lastname+" reviewed case#: "+data.case+"!</h3>Average Score: "+avgScore+"<br>knowledge: "+data.knowledge+"<br>Effort: "+data.Effort+"<br>Interpretation: "+data.interpretation+"<br>Soft Skills: "+data.soft_skills+"<br>Responsiveness:"+data.responsiveness+"<br>What you did well: <br><br>"+data.doWell+"<br> What you can improve:<br><br>"+data.improve+"<br>What they would have done differently:<br><br>"+data.diff+"<br>What they learned from your case:<br><br>"+data.learn,
+                        "Html-part":  "<h3>Hey, someone reviewed case#: "+data.case+"!</h3>Average Score: "+avgScore+"<br>knowledge: "+data.knowledge+"<br>Effort: "+data.Effort+"<br>Interpretation: "+data.interpretation+"<br>Soft Skills: "+data.soft_skills+"<br>Responsiveness:"+data.responsiveness+"<br>What you did well: <br><br>"+data.doWell+"<br> What you can improve:<br><br>"+data.improve+"<br>What they would have done differently:<br><br>"+data.diff+"<br>What they learned from your case:<br><br>"+data.learn,
                         "Recipients":[{"Email":data.Remail}]
                        }
 

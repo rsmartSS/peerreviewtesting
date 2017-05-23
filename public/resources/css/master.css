@@ -117,7 +117,8 @@ body {
    padding:10px;
 }
 .false{
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(255, 255, 255, 1);
+  color:#000 !important;
   padding: 10px;
   border-radius: 3px;
 }
@@ -127,7 +128,12 @@ body {
   text-decoration: underline;
 }
 /*styling for response*/
-
+.reviewForm{
+  width: 800px;
+}
+input[name="responsive"]{
+  margin-right: 5px;
+}
 
 .response{
   display: block;
@@ -187,6 +193,8 @@ textarea, input{
   font-weight: 200 !important;
 
 }
+.lastSection label{ margin:8px;}
+/*.lastSection input{ margin-left: 8px;}*/
 
 
 

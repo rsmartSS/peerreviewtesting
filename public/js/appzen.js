@@ -121,8 +121,11 @@ function cycleThrough(resp){
    try {
      for (var x = 0; x < 10; x++){
      	   var randCase = Math.floor(Math.random() * (respLength + 1)) || 42
-         var caseTag = resp.results[randCase].tags.find(findTag) || null
-         if(caseTag){
+        //  var caseTag = resp.results[randCase].tags.find(findTag) || null
+        //  var caseGroup = findGroup(resp.results[randCase].custom_fields[15].value) || null
+         var caseGroup = findGroup(resp.results[randCase].group_id) || null
+
+         if(caseGroup){
            x = x - 1
          }
          else{
@@ -132,11 +135,18 @@ function cycleThrough(resp){
       return idArray
    } catch (e) {
        alert("Error encountered, try refreshing the browser.",e)
+       console.log(e)
    }
 }
 
-function findTag(tags){
-    return tags === "peer_reviewed"
+function findGroup(group){
+    if(group == 33728027 || group == 33764028 || group == 33763688 || group == 33764048 || group == 33764088 || group == 33728067 || group == 33779667){
+      return null
+    }
+    else{
+      console.log('removed',group)
+      return group
+    }
  }
 
 //part 2

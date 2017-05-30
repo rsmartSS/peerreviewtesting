@@ -279,6 +279,9 @@ textarea, input{
      padding:10px;
      text-transform: capitalize;
   }
+  .panel-body p{
+    margin-left: 20px;
+  }
   #search{
     background-color: #4C4C4C;
     background-image: none;
@@ -299,6 +302,13 @@ textarea, input{
     display: inline-block;
   }
   #agent option{ text-transform: capitalize;}
+
+
+  /*flagged cases*/
+
+  .redflag{
+    border: 1px solid red;
+  }
 
   /*#ui-datepicker-div{
     background-color: #fff;

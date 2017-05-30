@@ -185,7 +185,7 @@ function doit(data){
        id:roleAgent.id
   }
   var fullthread = buildComment(comments, total) //[]
-  console.log(fullthread)
+  // console.log(fullthread)
   showTime2(fullthread,user)
 
 }
@@ -228,6 +228,7 @@ function findAgent(users){
    var html = template(caseInfo)
 
    $('#output2').html(html);
+   callStaff()
  }
 
 
@@ -282,13 +283,42 @@ function callDb(){
            dataType: 'json'
          });
 
+
+
     }
+}
+function callStaff(){
+  $.ajax({
+    type: 'POST',
+    url: '/staffDb',
+    success: setStaff,
+    error: errorHandler,
+    dataType:'json'
+  });
+
+}
+
+function setStaff(data){
+  var staff = data;
+  console.log("staff collected", data)
+
+
+
+  for (x = 0; x < staff.length; x++){
+    $('#drop').append($('<option>', {
+        value: staff[x].FirstName+" "+staff[x].LastName+" "+staff[x].Email,
+        text:staff[x].FirstName+" "+staff[x].LastName
+    }));
+
+  }
+
+
+
 }
 
 //sort to display the reviews from last week
 function sortTodisplay(reviews){
      allReviews = reviews
-     console.log(reviews)
      var usersInDb = arrayDupes("firstName",allReviews)
     //  console.log(allReviews)
      var s = $("#agent")
@@ -302,13 +332,13 @@ function sortTodisplay(reviews){
      var cases =[]
      var d1 = new Date(lastWeek)
     // var d2 = new Date(reviews[10].submissonDate)
-
-  for(x = 1; x < reviews.length; ++x){
+  for(x = 0; x < reviews.length; ++x){
     var d1 = new Date(lastWeek)
     var d2 = new Date(reviews[x].submissonDate)
 
-        if(d1<d2){
+     if(d1<d2){
           cases.push(reviews[x])
+          reviews[x]
         }
   }
    showTimePam(cases)
@@ -329,8 +359,6 @@ function sortbyDateRange(start, end, agent){
             cases.push(allReviews[x])
                }
    }
-
-
   if(agent){
 
     // console.log("call agent sort")
@@ -382,16 +410,20 @@ else{
 }
 }
 
+Handlebars.registerHelper("checkedIf", function (condition) {
+  console.log(condition)
+  return (condition) ? "checked" : "";
+  });
+function showTimePam(reviewsSent){
 
-function showTimePam(reviews){
-
-
-  var data = reviews
+  console.log(reviewsSent)
+  var data = reviewsSent
   var source = $('#showTimePam').html()
   var template = Handlebars.compile(source)
   var html = template(data)
 
   $('#showTimeReview').html(html)
+  flagPowers()
 
   }
 //controls date range selection
@@ -437,6 +469,48 @@ function arrayDupes(propertyName, inputArray){
       }
     });
     return testObject
+}
+
+function flagPowers(){
+  let flaggedCases = $('.flag')
+
+  $.each(flaggedCases, function(item){
+    if($(this).prop('checked')==true){
+      $(this).closest('.panel-group').addClass("redflag")
+    }
+  })
+  $(".flag").on("click", function(){
+        if ($(this).prop('checked') == true){
+          $(this).closest('.panel-group').addClass("redflag")
+          console.log("flaged is true: ", $(this)[0].id)
+          let caseinfo={id: $(this)[0].id,
+                      val: $(this).prop('checked')}
+            $.ajax({
+                 type: 'POST',
+                 url: '/flag',
+                 data: caseinfo,
+                //  success: sortTodisplay ,
+                 error: errorHandler,
+                 dataType: 'json'
+               });
+
+        }
+        else{
+          $(this).closest('.panel-group').removeClass("redflag")
+
+          console.log("not true fam",  $(this).val())
+          let caseinfo={id: $(this)[0].id,
+                      val: $(this).prop('checked')}
+            $.ajax({
+                 type: 'POST',
+                 url: '/flag',
+                 data: caseinfo,
+                //  success: sortTodisplay ,
+                 error: errorHandler,
+                 dataType: 'json'
+               });
+        }
+  })
 }
 
 

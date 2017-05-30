@@ -126,10 +126,10 @@
         </script>
 
         <script type="text/javascript" id="showTimePam">
-        <div>
+        <div id="view">
           {{#each this}}
           <div class="row">
-          <div class="col-lg-12">
+          <div class="col-lg-10 col-lg-offset-1">
             <div class="panel-group">
             <div class="panel panel-default">
               <div class="panel-heading">
@@ -138,25 +138,21 @@
                      <tr>
                        <th>Date</th>
                        <th>Reviewer</th>
-                       <th>Overall</th>
-                       <th>Interpretation</th>
-                       <th>Effort</th>
-                       <th>Knowledge</th>
-                       <th>Soft Skills</th>
+                       <th>Agent Reviewed</th>
                        <th>Responsiveness</th>
+                       <th>Overall</th>
                        <th>Link to Case</th>
+                       <th>Flag</th>
 
                      </tr>
                      <tr>
                        <td>{{submissonDate}}</td>
                        <td>{{firstName}} <br/> {{lastName}}</td>
-                       <td>{{overall}}</td>
-                       <td>{{Interpretation}}</td>
-                       <td>{{effort}}</td>
-                       <td>{{knowledge}}</td>
-                       <td>{{softskill}}</td>
+                       <td>{{reveiwedName}}</td>
                        <td>{{responsiveness}}</td>
+                       <td>{{overall}}</td>
                        <td><a href="https://sharpspring.zendesk.com/agent/tickets/{{case}}"  target="_blank">{{case}}</a></td>
+                       <td><input id="{{_id}}" class="flag" type="checkbox" {{checkedIf flag}}/></td>
                        <td><a data-toggle="collapse" href="#collapse{{@index}}"><span style='color:#000;' class="glyphicon glyphicon-option-vertical"></span></a></td>
 
                      </tr>
@@ -168,28 +164,77 @@
 
                   <div class="row">
                     <div class="col-md-12">
-                      <h3>What did the case owner do well? </h3>
-                      <p>{{commentDoWell}}</p>
+                      <h3>Did the engineer understand the customer’s request? If not, did they request clarification?</h3>
+                      <p>{{understand}}</p>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
-                      <h3>What can the case owner Improve on? </h3>
-                      <p>{{commentImprove}}</p>
+                      <h3>Did the engineer link a help article?</h3>
+                      <p>{{helpArticle}}</p>
+                    </div>
+
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <h3>Did the help article specifically address the customer’s question? </h3>
+                      <p>{{correctArticle}}</p>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
-                      <h3>What would you have done differently? </h3>
-                      <p>{{commentDifferent}}</p>
+                      <h3>Did the engineer verify the content when linking it?</h3>
+                      <p> {{verifyArticle}}</p>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
-                      <h3>What did you learn from reviewing the case? </h3>
-                      <p> {{commentLearn}}</p>
+                      <h3>Was the ERASER method used in this case?</h3>
+                      <p> {{eraser}}</p>
                     </div>
                   </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <h3>Was the ERASER method used effectively?</h3>
+                      <p> {{effectively}}</p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <h3>Should it have been used?</h3>
+                      <p> {{wasitnecessary}}</p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <h3>Was the engineer courteous?</h3>
+                      <p> {{courtesy}}</p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <h3>Could the case been resolved quicker if the engineer called the customer?</h3>
+                      <p> {{call}}</p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <h3>Did they appear knowledgeable and helpful?</h3>
+                      <p> {{knowledgeable}}</p>
+                    </div>
+                  </div>
+                   <div class="row">
+                    <div class="col-md-12">
+                      <h3>Why? (response to overall score.)</h3>
+                      <p> {{whyOverall}}</p>
+                    </div>
+                  </div>
+                  <div class="row">
+                   <div class="col-md-12">
+                     <h3>What would you have done differently? </h3>
+                     <p> {{improve}}</p>
+                   </div>
+                 </div>
                 </div>
 
               </div>

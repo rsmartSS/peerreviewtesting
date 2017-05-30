@@ -42,6 +42,7 @@
         <!-- /.row -->
         <div class="row">
           <div class="col-lg-6 col-md-6 text-center">
+          
             <div class="box">
               <h1>Goodbye mediocrity. Hello Super Support.</h1>
               <center>
@@ -130,7 +131,7 @@
                         <center>
 
                          <div class="response">
-                           <h2>You are reviewing <u>{{agent}}</u>'s Case</h2>
+                           <h2>You are reviewing <u>{{agent}}</u> 's Case</h2>
                            <p>{{email}}</p>
                            <p>Case #: <a href="https://sharpspring.zendesk.com/agent/tickets/{{case}}" target="_blank" style="color:#82C340">{{case}}</a></p>
 
@@ -145,7 +146,7 @@
                                </td>
 
                                 <td>
-                                <select   name="agent" required>
+                                <select  name="agent" id="drop" required >
                                   <option selected disabled >select your name</option>
 
                                 </select>
@@ -163,7 +164,7 @@
                                   <td><label for="understand">Did the engineer understand the customer’s request? If not, did they request clarification?</label> </td>
                                 </tr>
                                 <tr>
-                                  <td><input type="radio" name="understand" value="Yes"><label for="understand">Yes</label><input type="radio" name="understand" value="No"><label for="understand">No</label></td>
+                                  <td><input type="radio" name="understand" value="Yes" required><label for="understand">Yes</label><input type="radio" name="understand" value="No"><label for="understand">No</label></td>
                                 </tr>
                                 <tr>
                                   <td>
@@ -171,37 +172,37 @@
                                   </td>
                                 </tr>
                                 <tr>
-                                  <td><input type="radio" name="helpArticle" value="Yes"><label for="helpArticle">Yes</label><input type="radio" name="helpArticle" value="No"><label for="helpArticle">No</label></td>
+                                  <td><input type="radio" name="helpArticle" value="Yes" required><label for="helpArticle">Yes</label><input type="radio" name="helpArticle" value="No"><label for="helpArticle">No</label></td>
                                 </tr>
                                 <tr>
                                   <td><label for="correctArticle">Did the help article specifically address the customer’s question?</label> </td>
                                 </tr>
                                 <tr>
-                                  <td><input type="radio" name="correctArticle" value="Yes"><label for="correctArticle">Yes</label><input type="radio" name="correctArticle" value="No"><label for="correctArticle">No</label></td>
+                                  <td><input type="radio" name="correctArticle" value="Yes" required><label for="correctArticle">Yes</label><input type="radio" name="correctArticle" value="No"><label for="correctArticle">No</label></td>
                                 </tr>
                                 <tr>
                                   <td><label for="verifyArticle"> Did the engineer verify the content when linking it?</label> </td>
                                 </tr>
                                 <tr>
-                                  <td><input type="radio" name="verifyArticle" value="Yes"><label for="verifyArticle">Yes</label><input type="radio" name="verifyArticle" value="No"><label for="verifyArticle">No</label></td>
+                                  <td><input type="radio" name="verifyArticle" value="Yes" required><label for="verifyArticle">Yes</label><input type="radio" name="verifyArticle" value="No"><label for="verifyArticle">No</label></td>
                                 </tr>
                                 <tr>
                                   <td><label for="eraser">Was the ERASER method used in this case?</label> </td>
                                 </tr>
                                 <tr>
-                                  <td><input type="radio" name="eraser" value="Yes"><label for="eraser">Yes</label><input type="radio" name="eraser" value="No"><label for="eraser">No</label></td>
+                                  <td><input type="radio" name="eraser" value="Yes" required><label for="eraser" >Yes</label><input type="radio" name="eraser" value="No"><label for="eraser">No</label></td>
                                 </tr>
                                 <tr>
                                   <td><label for="effectively">Was the ERASER method used effectively?</label> </td>
                                 </tr>
                                 <tr>
-                                  <td><input type="radio" name="effectively" value="Yes"><label for="effectively">Yes</label><input type="radio" name="effectively" value="No"><label for="effectively">No</label></td>
+                                  <td><input type="radio" name="effectively" value="Yes" required><label for="effectively">Yes</label><input type="radio" name="effectively" value="No"><label for="effectively">No</label></td>
                                 </tr>
                                 <tr>
                                   <td><label for="doubt"> Should it have been used??</label> </td>
                                 </tr>
                                 <tr>
-                                  <td><input type="radio" name="doubt" value="Yes"><label for="doubt">Yes</label><input type="radio" name="doubt" value="No"><label for="doubt">No</label></td>
+                                  <td><input type="radio" name="doubt" value="Yes" required><label for="doubt">Yes</label><input type="radio" name="doubt" value="No"><label for="doubt">No</label></td>
                                 </tr>
                               </tbody>
                             </table>
@@ -212,7 +213,7 @@
                                   <td><label for="responsive">Was the engineer responsive to updates on the case?</label></td>
                                 </tr>
                                 <tr>
-                                  <td><input type="radio" name="responsive" value="1"> <label for="responsive">1 - Poor response times and/or generally not responsive</label></td>
+                                  <td><input type="radio" name="responsive" value="1" required> <label for="responsive">1 - Poor response times and/or generally not responsive</label></td>
                                 </tr>
                                 <tr>
                                   <td><input type="radio" name="responsive" value="2"><label for="responsive">2 - Good response yet customer had to repeatedly ask for updates</label></td>
@@ -234,13 +235,13 @@
                                   <td><label for="courtesy">Was the engineer courteous?</label></td>
                                 </tr>
                                 <tr>
-                                  <td><input type="radio" name="courtesy" value="Yes"><label for="courtesy">Yes</label><input type="radio" name="courtesy" value="No"><label for="courtesy">No</label></td>
+                                  <td><input type="radio" name="courtesy" value="Yes" required><label for="courtesy">Yes</label><input type="radio" name="courtesy" value="No"><label for="courtesy">No</label></td>
                                 </tr>
                                 <tr>
                                   <td><label for="call">Could the case been resolved quicker if the engineer called the customer?</label></td>
                                 </tr>
                                 <tr>
-                                  <td><input type="radio" name="call" value="Yes"><label for="call">Yes</label><input type="radio" name="call" value="No"><label for="call">No</label></td>
+                                  <td><input type="radio" name="call" value="Yes" required><label for="call">Yes</label><input type="radio" name="call" value="No"><label for="call">No</label></td>
                                 </tr>
                                 <tr>
                                   <td><label for="knowledgeable">Did they appear knowledgeable and helpful?</label></td>
@@ -252,7 +253,7 @@
                                   <td><label for="overall">On a scale of 1-5, overall rating of the case?</label></td>
                                 </tr>
                                 <tr>
-                                  <td><input type="radio" name="overall" value="1"><label for="overall">1</label><input type="radio" name="overall" value="2"><label for="overall">2</label> <input type="radio" name="overall" value="3"><label for="overall">3</label> <input type="radio" name="overall" value="4"><label for="overall">4</label> <input type="radio" name="overall" value="5"><label for="overall">5</label> </td>
+                                  <td><input type="radio" name="overall" value="1" required><label for="overall">1</label><input type="radio" name="overall" value="2"><label for="overall">2</label> <input type="radio" name="overall" value="3"><label for="overall">3</label> <input type="radio" name="overall" value="4"><label for="overall">4</label> <input type="radio" name="overall" value="5"><label for="overall">5</label> </td>
                                 </tr>
                               </table>
 

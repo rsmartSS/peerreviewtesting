@@ -31,7 +31,7 @@ const dbURl = 'mongodb://adminLP:'+mongopass+'@cluster0-shard-00-00-5pp3g.mongod
       server.set('port', process.env.PORT || 8080);
 
       server.get('/', home);
-      server.get('/pamzenfu', function(req,res){
+      server.get('/smview', function(req,res){
         res.sendFile('/html/pampage.html',{root:__dirname+'/public'});
       })
       server.post('/giphyThanks', giphyCall)
@@ -124,7 +124,8 @@ const dbURl = 'mongodb://adminLP:'+mongopass+'@cluster0-shard-00-00-5pp3g.mongod
         var options ={
           method: 'PUT',
           url: tagUrl,
-          data: { "tags": ["Peer_reviewed"] } ,
+          body: { tags: ["Peer_reviewed"] } ,
+          json: true,
           headers:
            {
              'cache-control': 'no-cache',
@@ -135,6 +136,30 @@ const dbURl = 'mongodb://adminLP:'+mongopass+'@cluster0-shard-00-00-5pp3g.mongod
              // console.log("api queried", body) for testing
 
             })
+      }
+      //sends to zappier https://hooks.zapier.com/hooks/catch/2144011/9rfa6m/
+      function zapPost(data){
+         let checkmate= {
+              firstname:data.agent.split(" ")[0],
+              lastname:data.agent.split(" ")[1],
+              email:data.agent.split(" ")[2],
+              alld:data
+         }
+         let options ={
+            method:'POST',
+            url:'https://hooks.zapier.com/hooks/catch/2144011/9rfa6m/',
+            body:{
+              form:checkmate
+            },
+           json:true
+
+         }
+
+         request(options, function(error, res, body){
+           if(error) throw new Error(error);
+           console.log("zapp send",body)
+         })
+
 
       }
 
@@ -142,8 +167,9 @@ const dbURl = 'mongodb://adminLP:'+mongopass+'@cluster0-shard-00-00-5pp3g.mongod
       //inserts data into data base
       function reviewResponse(req, res){
           var formData = req.body
-        //  addtag(formData) //should work test later
-          //notify(formData)
+          addtag(formData) //should work test later
+          notify(formData)
+          zapPost(formData)
           console.log(formData)
           MongoClient.connect(dbURl, function(err, db) {
             assert.equal(null, err);
@@ -155,10 +181,8 @@ const dbURl = 'mongodb://adminLP:'+mongopass+'@cluster0-shard-00-00-5pp3g.mongod
           });
 
           res.sendFile('/html/thanks.html',{root:__dirname+'/public'});
-
-
-
       }
+
 
 
       //sends information to collection
@@ -185,10 +209,11 @@ const dbURl = 'mongodb://adminLP:'+mongopass+'@cluster0-shard-00-00-5pp3g.mongod
            callback(result);
 
          });
+
          checkfive(firstname, lastname)
-
-
       }
+
+
      //collect reveiws from datbase
      function displayReview(req, res){
              MongoClient.connect(dbURl, function(err, db){
@@ -231,6 +256,7 @@ const dbURl = 'mongodb://adminLP:'+mongopass+'@cluster0-shard-00-00-5pp3g.mongod
               console.log("You have hit 5 cases")
               // call notification email
                notifyLimit(five[0])
+               noitfySlack(five[0])
             }
             else{
                console.log("you still have cases to go this week")
@@ -278,7 +304,7 @@ const dbURl = 'mongodb://adminLP:'+mongopass+'@cluster0-shard-00-00-5pp3g.mongod
       }
       // sends email when 5 cases have been reviewed
       function notifyLimit(data){
-           console.log(data)
+
            var  email={
                         "FromEmail":"sspeerreview@gmail.com",
                         "FromName":"PS Peer Review",
@@ -296,6 +322,31 @@ const dbURl = 'mongodb://adminLP:'+mongopass+'@cluster0-shard-00-00-5pp3g.mongod
           .catch(err => {
             console.log(err.statusCode)
           })
+      }
+
+      function notifySlack(data){
+        // console.log(data)
+        //   var data
+        //   data.firstName = "testing"
+        //   data.lastName = "123"
+        // text:data.firstName+" "+data.lastName+" has completed 5 Reviews this week"
+
+        let options ={
+           method:'POST',
+           url:'https://hooks.slack.com/services/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',
+           body:{
+              text:data.firstName+" "+data.lastName+" has commpleted 5 reviews this week!"
+
+           },
+          json:true
+
+        }
+
+        request(options, function(error, res, body){
+          if(error) throw new Error(error);
+          console.log("slack send",body)
+        })
+
       }
 
 

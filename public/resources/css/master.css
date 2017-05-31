@@ -309,6 +309,16 @@ textarea, input{
   .redflag{
     border: 1px solid red;
   }
+  #flagbox{
+    width: 17px;
+    display: inline-block;
+    height: 17px;
+    margin-left: 10px;
+  }
+  .flagPowers span{
+    color: #fff;
+  }
+  #flagbox:focus {outline:0 !important;}
 
   /*#ui-datepicker-div{
     background-color: #fff;

@@ -242,7 +242,6 @@ header{
        width: 150px;
        height: 150px;
        margin: -75px 0 0 -75px;
-
        border: 3px solid transparent;
        border-top-color: #3498db;
        z-index: 1500;
@@ -251,3 +250,6 @@ header{
        animation: spin 1.5s linear infinite;
 
      }
+.hide{
+  display: none !important;
+}

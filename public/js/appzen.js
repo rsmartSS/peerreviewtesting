@@ -121,11 +121,11 @@ function cycleThrough(resp){
    try {
      for (var x = 0; x < 10; x++){
      	   var randCase = Math.floor(Math.random() * (respLength + 1)) || 42
-        //  var caseTag = resp.results[randCase].tags.find(findTag) || null
-        //  var caseGroup = findGroup(resp.results[randCase].custom_fields[15].value) || null
-         var caseGroup = findGroup(resp.results[randCase].group_id) || null
 
-         if(caseGroup){
+         var caseGroup = findGroup(resp.results[randCase].group_id) || null
+         var caseTag = findTag(resp.results[randCase].tags) || null
+
+         if(caseGroup || caseTag){
            x = x - 1
          }
          else{
@@ -138,7 +138,17 @@ function cycleThrough(resp){
        console.log(e)
    }
 }
+function findTag(tags){
+    for(let x; x < tags.length; x++){
+       if(tags[x] == "Peer_reviewed"){
+        return tags[x]
+       }
+       else{
+         console.log("clear")
+       }
 
+    }
+}
 function findGroup(group){
     if(group == 33728027 || group == 33764028 || group == 33763688 || group == 33764048 || group == 33764088 || group == 33728067 || group == 33779667){
       return null
@@ -300,20 +310,12 @@ function callStaff(){
 
 function setStaff(data){
   var staff = data;
-  console.log("staff collected", data)
-
-
-
   for (x = 0; x < staff.length; x++){
     $('#drop').append($('<option>', {
         value: staff[x].FirstName+" "+staff[x].LastName+" "+staff[x].Email,
         text:staff[x].FirstName+" "+staff[x].LastName
     }));
-
   }
-
-
-
 }
 
 //sort to display the reviews from last week
@@ -471,6 +473,8 @@ function arrayDupes(propertyName, inputArray){
     return testObject
 }
 
+//flags cases in db and marks them on the front end
+
 function flagPowers(){
   let flaggedCases = $('.flag')
 
@@ -505,7 +509,6 @@ function flagPowers(){
                  type: 'POST',
                  url: '/flag',
                  data: caseinfo,
-                //  success: sortTodisplay ,
                  error: errorHandler,
                  dataType: 'json'
                });
@@ -513,7 +516,31 @@ function flagPowers(){
   })
 }
 
+//show only the flaged cases
+$("#flagbox").on('click', hideCases)
 
+
+function hideCases(){
+   var caseModals =  $('.panel-group')
+ if($(this).prop('checked') == true){
+   $.each(caseModals, function(item){
+      if($(this).hasClass('redflag') == false){
+        $(this).hide()
+      }
+    })
+   }
+   else{
+     $.each(caseModals, function(item){
+        if($(this).hasClass('redflag') == false){
+          $(this).show()
+        }
+  })
+  }
+
+
+
+
+}
 
 })
 

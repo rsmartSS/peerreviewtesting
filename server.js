@@ -168,7 +168,7 @@ const dbURl = 'mongodb://adminLP:'+mongopass+'@cluster0-shard-00-00-5pp3g.mongod
       function reviewResponse(req, res){
           var formData = req.body
           addtag(formData) //should work test later
-          // notify(formData)
+          notify(formData)
           zapPost(formData)
           console.log(formData)
           MongoClient.connect(dbURl, function(err, db) {
@@ -288,7 +288,7 @@ const dbURl = 'mongodb://adminLP:'+mongopass+'@cluster0-shard-00-00-5pp3g.mongod
                         "FromName":"PS Peer Review",
                         "Subject":"One of your cases was reviewed!!",
                         "Text-part":"!",
-                        "Html-part":  "<h3>Hey, someone reviewed case#: "+data.case+" that is all!"
+                        "Html-part":  "<h3>Hey, someone reviewed case#: "+data.case+" that is all!",
                         "Recipients":[{"Email":data.Remail}]
                        }
 

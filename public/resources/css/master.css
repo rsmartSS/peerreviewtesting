@@ -272,7 +272,7 @@ textarea, input{
     font-size:15px !important;
   }
 
-  /*pampage*/
+  /*pampage delete*/
 
   #showTimeReview table td{
      color: #fff;
@@ -323,3 +323,11 @@ textarea, input{
   /*#ui-datepicker-div{
     background-color: #fff;
   }*/
+
+.hide{
+  display: none;
+
+}
+.show{
+  display: initial;
+}

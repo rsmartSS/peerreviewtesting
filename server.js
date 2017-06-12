@@ -28,44 +28,22 @@ const dbURl = 'mongodb://adminLP:'+mongopass+'@cluster0-shard-00-00-5pp3g.mongod
       server.use(express.static(__dirname+'/public'));
 
 
-      server.set('port', process.env.PORT || 8080);
+      server.set('port', process.env.PORT || 8081 );
 
       server.get('/', home);
-      server.get('/smview', function(req,res){
-        res.sendFile('/html/pampage.html',{root:__dirname+'/public'});
-      })
+
       server.post('/giphyThanks', giphyCall)
-      server.get('/test', displayReview)
-      server.post('/db', displayReview)
+      // server.get('/test', displayReview)
       server.post('/staffDb',getUsers)
       server.post('/api',makeCall);
       server.post('/api2', commentUser);
       server.post('/reviewed', reviewResponse)
-      server.post('/flag', flagCase)
+
 
 
       server.listen(server.get('port'), listenCallBack);
 
-       //for testing purposes
-      // server.get('/mailtest', function(){
-      //      var  email={
-      //                   "FromEmail":"andra.ishmael@sharpspring.com",
-      //                   "FromName":"Mailjet Pilot",
-      //                   "Subject":"Your email flight plan!",
-      //                   "Text-part":"Dear passenger, welcome to Mailjet! May the delivery force be with you!",
-      //                   "Html-part":"<h3>Dear passenger, welcome to Mailjet!</h3><br />May the delivery force be with you!",
-      //                   "Recipients":[{"Email":"ishmaelak@gmail.com"}]
-      //                  }
-      //
-      //     var sendMail = mjRequest.post("send").request(email)
-      //
-      //     sendMail.then(result =>{
-      //           console.log(result.body)
-      //     })
-      //     .catch(err => {
-      //       console.log(err.statusCode)
-      //     })
-      // })
+
 
       //sends index file when called
       function home( req, res){
@@ -167,7 +145,7 @@ const dbURl = 'mongodb://adminLP:'+mongopass+'@cluster0-shard-00-00-5pp3g.mongod
       //inserts data into data base
       function reviewResponse(req, res){
           var formData = req.body
-          addtag(formData) //should work test later
+          addtag(formData)
           notify(formData)
           zapPost(formData)
           console.log(formData)
@@ -214,7 +192,7 @@ const dbURl = 'mongodb://adminLP:'+mongopass+'@cluster0-shard-00-00-5pp3g.mongod
       }
 
 
-     //collect reveiws from datbase
+     //collect reveiws from datbase //delete
      function displayReview(req, res){
              MongoClient.connect(dbURl, function(err, db){
               //  var cursor= db.collection('weeklyReview').find()
@@ -302,6 +280,35 @@ const dbURl = 'mongodb://adminLP:'+mongopass+'@cluster0-shard-00-00-5pp3g.mongod
             console.log(err.statusCode)
           })
       }
+
+
+      // 
+      // function notifycopy(data){
+      //
+      //
+      //     //  console.log("disabled temporarly",email)
+      //     var sendMail = mjRequest.post("send").request({
+      //       "FromEmail":"sspeerreview@gmail.com",
+      //       "FromName":"PS Peer Review",
+      //       "Subject":"Someone Reviewed Your Case!!",
+      //       "MJ-TemplateLanguage":"true",
+      //       "Text-part":"Hey {{var:name:\"Dude\"}}, welcome to Mailjet! On this {{var:day:\"monday\"}}, may the delivery force be with you! {{var:personalmessage:\"\"}}",
+      //        "Html-part":"<h3>Dear {{var:name:\"Dude\"}}, Someone reviewed your case!</h3><br /> Your case:{{var:case:\"33442\"}} was reviewed.,",
+      //
+      //
+      //     })
+      //
+      //     sendMail.then(result =>{
+      //           console.log(result.body)
+      //     })
+      //     .catch(err => {
+      //       console.log(err.statusCode)
+      //     })
+      // }
+
+
+
+
       // sends email when 5 cases have been reviewed
       function notifyLimit(data){
 
@@ -350,21 +357,6 @@ const dbURl = 'mongodb://adminLP:'+mongopass+'@cluster0-shard-00-00-5pp3g.mongod
       }
 
 
-      //function flags individual case
-      function flagCase(data){
-        let objectId = new mongo.ObjectId(data.body.id)
-        let objectValue= (data.body.val == 'true')
-        console.log(objectValue)
-
-        MongoClient.connect(dbURl, function(err, db){
-          var cursor= db.collection('weeklyReview').find()
-           db.collection('weeklyReview2').updateOne({_id: objectId}, {$set: {flag:objectValue} }, function(err,r){
-              console.log(err)
-              })
-
-
-         })
-      }
 
       //collects random gif from giphy api
       function giphyCall(req, res){

@@ -102,14 +102,6 @@ function xpat(allDat){
     var resp = allDat
     var respLength = resp.results.length
     var caseIDArray = cycleThrough(resp)
-  //old version
-  // var caseIDArray =  []
-  //  for (var x = 0; x < 10; x++){
-  //  	var randCase = Math.floor(Math.random() * (respLength + 1));
-  //  	caseIDArray.push(resp.results[randCase].id);
-   // 	console.log('Find your Zen: ', resp.results[randCase].id);
-   // 	console.log(randCase);
-
 
    return caseIDArray
 }
@@ -242,7 +234,7 @@ function findAgent(users){
  }
 
 
-//rotate gifs
+//rotate gifs make self calling function
 callGiphy()
 function callGiphy(){
 
@@ -281,22 +273,7 @@ function showTimeThanks(data){
   }
 
 
-//PAM display
-callDb()
-function callDb(){
-    if($('#reviews').length){
-      $.ajax({
-           type: 'POST',
-           url: '/db',
-           success: sortTodisplay ,
-           error: errorHandler,
-           dataType: 'json'
-         });
 
-
-
-    }
-}
 function callStaff(){
   $.ajax({
     type: 'POST',
@@ -316,231 +293,38 @@ function setStaff(data){
         text:staff[x].FirstName+" "+staff[x].LastName
     }));
   }
-}
+  //runs same tiem as get staff
 
-//sort to display the reviews from last week
-function sortTodisplay(reviews){
-     allReviews = reviews
-     var usersInDb = arrayDupes("firstName",allReviews)
-    //  console.log(allReviews)
-     var s = $("#agent")
-     for(item in usersInDb){
+    
+   $('input[name=eraser]').change(function(){
+     console.log($(this).val())
+     if($(this).val() == "Yes"){
+        $('.answerYes').removeClass('hide')
+        $('.answerNo').addClass('hide')
 
-       $('<option />', {text:item}).appendTo(s);
      }
-    //  $('#start').val(lastWeek)
-    // $('#end').val()
+     else{
+       $('.answerNo').removeClass('hide')
+       $('.answerYes').addClass('hide')
 
-     var cases =[]
-     var d1 = new Date(lastWeek)
-    // var d2 = new Date(reviews[10].submissonDate)
-  for(x = 0; x < reviews.length; ++x){
-    var d1 = new Date(lastWeek)
-    var d2 = new Date(reviews[x].submissonDate)
+     }
+   })
 
-     if(d1<d2){
-          cases.push(reviews[x])
-          reviews[x]
-        }
-  }
-   showTimePam(cases)
-}
-
-// TODO:finish
-
-//sorts cases according to input from user
-function sortbyDateRange(start, end, agent){
-  var cases =[]
-  var dateStart = new Date(start)
-  var dateEnd = new Date(end)
-
-   for(x= 1; x <allReviews.length; ++x){
-          var caseDate = new Date(allReviews[x].submissonDate)
-
-        if( caseDate >= dateStart && caseDate <= dateEnd){
-            cases.push(allReviews[x])
-               }
-   }
-  if(agent){
-
-    // console.log("call agent sort")
-    sortByname(cases,agent)
-
-  }
-  else if(cases.length > 0){
-    console.log("show time")
-    showTimePam(cases)
-  }
-  else{
-    alert("no cases in this range.")
-  }
-}
-
-function sortByname(cases,agent){
-  var sortedcases =[]
-  var Fname = agent.split(" ")[0].replace(/\s/g, '').toLowerCase()
-  var Lname = agent.split(" ")[1].replace(/\s/g, '').toLowerCase()
-
-  cases.forEach( function(item){
-    var casefName= undefined ? "hold" :item.firstName;
-    var caselName= undefined ? "hold" :item.lastName;
-     caselName = undefined ? "blank": caselName.replace(/\s/g, '').toLowerCase()
-     casefName = undefined ? "blank": casefName.replace(/\s/g, '').toLowerCase()
-    //  console.log(casefName)
-      if(casefName == Fname&& caselName == Lname){
-        sortedcases.push(item)
-
-      }
-
-  })
-  // for(x= 1; x < cases.length ; ++x){
-  //     var caseName = cases[x].firstName.toLowerCase();
-  //         if( caseName == name){
-  //          sortedcases.push(cases[x])
-  //      }
-
-
-  // }
-
-
-if(sortedcases.length > 0){
-  showTimePam(sortedcases)
+  //  $yes.on('click', function(){
+  //    console.log($('this').checked)
+  //  })
+   //
+  //  $no.on('click', function(){
+   //
+  //  })
 
 }
-else{
-  alert("No one with that that name, try again")
-}
-}
-
-Handlebars.registerHelper("checkedIf", function (condition) {
-  console.log(condition)
-  return (condition) ? "checked" : "";
-  });
-function showTimePam(reviewsSent){
-
-  console.log(reviewsSent)
-  var data = reviewsSent
-  var source = $('#showTimePam').html()
-  var template = Handlebars.compile(source)
-  var html = template(data)
-
-  $('#showTimeReview').html(html)
-  flagPowers()
-
-  }
-//controls date range selection
-$('.input-daterange').datepicker({
-  todayHighlight: true,
-  todayBtn: "linked"
-
-});
-
-$('#gosearch').on('click', sortStructure)
-
-function sortStructure(){
- var startDate = $('#start').val()
- var endDate = $('#end').val()
- var agent = $('#agent').val()
-
- if(startDate)
-{
-  sortbyDateRange(startDate, endDate, agent)
-
-}
-else{
-  sortbyDateRange( '03/01/2017', today, agent)
-
-}
-}
-//sorts for duplicate names that get placed in dropdown
-function arrayDupes(propertyName, inputArray){
-  var seenDuplicate = false,
-    testObject = {};
-
-    inputArray.map(function(item){
-      var itemPropertyName = item[propertyName].toLowerCase()
-      var itemPropertyNameL= item['lastName'].toLowerCase()
-      if (itemPropertyName in testObject && itemPropertyNameL in testObject){
-        testObject[itemPropertyName].duplicate = true;
-        item.duplicate = true
-        sendDuplicate = true;
-      }
-      else{
-        testObject[itemPropertyName+" "+itemPropertyNameL]= item;
-        delete item.duplicate;
-      }
-    });
-    return testObject
-}
-
-//flags cases in db and marks them on the front end
-
-function flagPowers(){
-  let flaggedCases = $('.flag')
-
-  $.each(flaggedCases, function(item){
-    if($(this).prop('checked')==true){
-      $(this).closest('.panel-group').addClass("redflag")
-    }
-  })
-  $(".flag").on("click", function(){
-        if ($(this).prop('checked') == true){
-          $(this).closest('.panel-group').addClass("redflag")
-          console.log("flaged is true: ", $(this)[0].id)
-          let caseinfo={id: $(this)[0].id,
-                      val: $(this).prop('checked')}
-            $.ajax({
-                 type: 'POST',
-                 url: '/flag',
-                 data: caseinfo,
-                //  success: sortTodisplay ,
-                 error: errorHandler,
-                 dataType: 'json'
-               });
-
-        }
-        else{
-          $(this).closest('.panel-group').removeClass("redflag")
-
-          console.log("not true fam",  $(this).val())
-          let caseinfo={id: $(this)[0].id,
-                      val: $(this).prop('checked')}
-            $.ajax({
-                 type: 'POST',
-                 url: '/flag',
-                 data: caseinfo,
-                 error: errorHandler,
-                 dataType: 'json'
-               });
-        }
-  })
-}
-
-//show only the flaged cases
-$("#flagbox").on('click', hideCases)
 
 
-function hideCases(){
-   var caseModals =  $('.panel-group')
- if($(this).prop('checked') == true){
-   $.each(caseModals, function(item){
-      if($(this).hasClass('redflag') == false){
-        $(this).hide()
-      }
-    })
-   }
-   else{
-     $.each(caseModals, function(item){
-        if($(this).hasClass('redflag') == false){
-          $(this).show()
-        }
-  })
-  }
+//dynamic questions
 
 
 
-
-}
 
 })
 

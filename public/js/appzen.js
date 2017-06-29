@@ -293,9 +293,7 @@ function setStaff(data){
         text:staff[x].FirstName+" "+staff[x].LastName
     }));
   }
-  //runs same tiem as get staff
-
-    
+  //runs same time as get staff dynamic question
    $('input[name=eraser]').change(function(){
      console.log($(this).val())
      if($(this).val() == "Yes"){
@@ -310,13 +308,19 @@ function setStaff(data){
      }
    })
 
-  //  $yes.on('click', function(){
-  //    console.log($('this').checked)
-  //  })
-   //
-  //  $no.on('click', function(){
-   //
-  //  })
+   $('input[name=helpArticle]').change(function(){
+     console.log($(this).val())
+     if($(this).val() == "Yes"){
+        $('.answerYes').removeClass('hide')
+
+     }
+     else{
+       $('.answerYes').addClass('hide')
+
+     }
+   })
+
+
 
 }
 

@@ -195,11 +195,13 @@ function doit(data){
 //simply builds the thread that gets displayed to the front end
 function buildComment(comments, total){
      var thread= []
-
+     console.log(comments)
   for (var x = 0; x < total; x++){
       var date = new Date(comments[x].created_at);
-      thread.push({comment:comments[x].plain_body.replace('&gt;', ''),public:comments[x].public,date:date} )
+      var comment= comments[x].plain_body
+      thread.push({comment:comment,public:comments[x].public,date:date} )
   }
+
      return thread
 }
 //cycles through users on a case to find agent

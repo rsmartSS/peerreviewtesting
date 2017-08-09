@@ -264,7 +264,7 @@ const dbURl = 'mongodb://adminLP:'+mongopass+'@cluster0-shard-00-00-5pp3g.mongod
            var  email={
                         "FromEmail":"sspeerreview@gmail.com",
                         "FromName":"PS Peer Review",
-                        "Subject":"One of your cases was reviewed!!",
+                        "Subject":"Your case was reviewed :)",
                         "Text-part":"!",
                         "Html-part":  "<h3>Hey, someone reviewed case#: "+data.case+" that is all!",
                         "Recipients":[{"Email":data.Remail}]

@@ -266,7 +266,7 @@ const dbURl = 'mongodb://adminLP:'+mongopass+'@cluster0-shard-00-00-5pp3g.mongod
                         "FromName":"PS Peer Review",
                         "Subject":"Your case was reviewed :)",
                         "Text-part":"!",
-                        "Html-part":  "<h3>Hey, someone reviewed case#: "+data.case+" that is all!<br><br>"+data.overall,
+                        "Html-part":  "<h3>Hey, someone reviewed case#: "+data.case+" that is all!<br><br>Please see details below:<br><br>"+understand:data.understand+"<br>"+helpArticle:data.helpArticle+"<br>"+correctArticle:data.correctArticle+"<br>"+verifyArticle:data.verifyArticle+"<br>"+eraser:data.eraser+"<br>"+effectively: data.effectively+"<br>"+wasitnecessary: data.doubt+"<br>"+courtesy: data.courtesy+"<br>"+responsiveness: data.responsive+"<br>"+call: data.call+"<br>"+knowledgeable: data.knowledgeable+"<br>"+overall: data.overall+"<br>"+whyOverall: data.why+"<br>"+improve: data.improve,
                         "Recipients":[{"Email":data.Remail}]
                        }
 

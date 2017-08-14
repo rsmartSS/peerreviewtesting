@@ -266,7 +266,7 @@ const dbURl = 'mongodb://adminLP:'+mongopass+'@cluster0-shard-00-00-5pp3g.mongod
                         "FromName":"PS Peer Review",
                         "Subject":"Your case was reviewed :)",
                         "Text-part":"!",
-                        "Html-part":  "<h3>Hey, someone reviewed case#: "+data.case+" that is all!<br><br>Please see details below:<br><br>"+data.understand+"<br>"+data.helpArticle+"<br>"+data.correctArticle+"<br>"+data.verifyArticle+"<br>"+data.eraser+"<br>"+data.effectively+"<br>"+data.doubt+"<br>"+data.courtesy+"<br>"+data.responsive+"<br>"+data.call+"<br>"+data.knowledgeable+"<br>"+data.overall+"<br>"+data.why+"<br>"+data.improve,
+                        "Html-part":  "<h3>Hey, someone reviewed case#: "+data.case+" that is all!<br><br>Please see details below:<br><br>Did the engineer understand the customer's request:  "+data.understand+"<br>"+data.helpArticle+"<br>"+data.correctArticle+"<br>"+data.verifyArticle+"<br>"+data.eraser+"<br>"+data.effectively+"<br>"+data.doubt+"<br>"+data.courtesy+"<br>"+data.responsive+"<br>"+data.call+"<br>"+data.knowledgeable+"<br>"+data.overall+"<br>"+data.why+"<br>"+data.improve,
                         "Recipients":[{"Email":data.Remail}]
                        }
 
@@ -315,7 +315,7 @@ const dbURl = 'mongodb://adminLP:'+mongopass+'@cluster0-shard-00-00-5pp3g.mongod
            var  email={
                         "FromEmail":"sspeerreview@gmail.com",
                         "FromName":"PS Peer Review",
-                        "Subject":"You have Reviewed 5 Cases!!",
+                        "Subject":"This was a test of the Peer Review System.  Please disregard.",
                         "Text-part":"Just letting you know that you have reviewed 5 cases this week",
                         "Recipients":[{"Email":data.email}]
                        }

@@ -260,14 +260,13 @@ const dbURl = 'mongodb://adminLP:'+mongopass+'@cluster0-shard-00-00-5pp3g.mongod
 
 
 //sends email to reviewed agent
-//testing adding in responses
       function notify(data){
            var  email={
                         "FromEmail":"sspeerreview@gmail.com",
                         "FromName":"PS Peer Review",
                         "Subject":"Your case was reviewed :)",
                         "Text-part":"!",
-                        "Html-part":  "Hey, someone reviewed case#: "+data.case+" that is all!" "<br><br>"+data.understand+,
+                        "Html-part":  "<h3>Hey, someone reviewed case#: "+data.case+" that is all!",
                         "Recipients":[{"Email":data.Remail}]
                        }
 

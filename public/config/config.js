@@ -1,4 +1,4 @@
-const apiK = 'YW5kcmEuaXNobWFlbEBzaGFycHNwcmluZy5jb206N0pqXkklb0U='
+const apiK = 'cm9iYmllLnNtYXJ0QHNoYXJwc3ByaW5nLmNvbTpkdWtlNT9Pc2NhcnM='
 
 
 // Export config

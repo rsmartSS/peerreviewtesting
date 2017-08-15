@@ -1,0 +1,321 @@
+ <!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>**TEST**Peer Review**</title>
+    <link rel="icon" href="https://toolshed.sharpspring.com/includes/img/favicon-128.png?ver=5.75-1" type="image/gif">
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,300i,400" rel="stylesheet">
+
+    <!-- Bootstrap Core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+  <link rel="stylesheet" type="text/css" href="resources/css/master.css">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    <!-- Page Content -->
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-12 text-center">
+              <img src="resources/img/ss_logo_ps.png" alt="SharpSpring Logo" class="logo">
+
+
+            </div>
+        </div>
+        <!-- /.row -->
+        <div class="row">
+          <div class="col-lg-6 col-md-6 text-center">
+
+            <div class="box">
+              <h1>Goodbye mediocrity. Hello Super Support.</h1>
+              <center>
+                <a class="btn btn-full" id='click' href="#" >Get Cases</a>
+
+              </center>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6">
+            <div class="box2">
+
+              <div class="load-text-box" id="output">
+                <div id="loader"></div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <center>
+              <div class="chossen" id="output2">
+
+
+
+
+
+               </div>
+               </center>
+              </div>
+
+              </div>
+          <!-- end of output2 -->
+        </div>
+     </div>
+
+<!-- Modal -->
+<div id="apiError" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Houston, we have a problem.</h4>
+      </div>
+      <div class="modal-body">
+        <p>Looks Like Zendesk is giving us the silent treatment. Please try agian later.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+        <!-- this is all going in the Handlebars bit -->
+
+    <!-- /.container -->
+      <!-- handlebar cases -->
+    <script type="text/javascript" id="showTime" >
+
+    <div  id="case">
+
+     <ul id="caseList" class="people_list">
+      {{#each case}}
+       <li><a id="{{id}}" name="{{assignee}}" href="#">https://sharpspring.zendesk.com/agent/tickets/{{id}}</a></li>
+      {{/each}}
+      </ul>
+    </div>
+    </script>
+    <!-- handlbar chossen case -->
+    <script type="text/javascript" class="display_case" id="part2">
+
+
+                        <div class="commentHolder">
+                        {{#each comment }}
+                          <p class="date">{{this.date}}</p>
+                         <p style="color:#fff;" class="comments {{this.public}}">{{this.comment}}</p>
+                        <hr/>
+                        {{/each}}
+                        </div>
+                        <div class="row">
+
+                        <center>
+
+                         <div class="response">
+                           <h2>You are reviewing <u>{{agent}}</u> 's Case</h2>
+                           <p>{{email}}</p>
+                           <p>Case #: <a href="https://sharpspring.zendesk.com/agent/tickets/{{case}}" target="_blank" style="color:#82C340">{{case}}</a></p>
+
+                           <form class="reviewForm" action="/reviewed" method="post">
+                            <fieldset id="userinfo">
+
+                            <table cellpadding="10">
+                             <tbody>
+                               <tr>
+                                <td>
+                                 <label for="agent">Agent reviewing</label><br>
+                               </td>
+
+                                <td>
+                                <select  name="agent" id="drop" required >
+                                  <option selected disabled >select your name</option>
+
+                                </select>
+                                <!-- <input type="text" name="firstname" required><br/>
+
+                                <input type="text" name="lastname" required><br/>
+
+                                <input type="text" name="email" required><br/> -->
+                                </td>
+                              </tr>
+                            </tbody></table>
+                            <table>
+                              <tbody>
+                                <tr>
+                                  <td><label for="understand">Did the engineer understand the customer’s request? If not, did they request clarification?</label> </td>
+                                </tr>
+                                <tr>
+                                  <td><input type="radio" name="understand" value="Yes" required><label for="understand">Yes</label><input type="radio" name="understand" value="No"><label for="understand">No</label></td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <label for="helpArticle">Did the engineer link a help article?</label>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td><input type="radio" name="helpArticle" value="Yes" required><label for="helpArticle">Yes</label><input type="radio" name="helpArticle" value="No"><label for="helpArticle">No</label></td>
+                                </tr>
+                                <tr class="dyArticle hide">
+                                  <td><label for="correctArticle">Did the help article specifically address the customer’s question?</label> </td>
+                                </tr>
+                                <tr class="dyArticle hide">
+                                  <td><input type="radio" name="correctArticle" value="Yes" ><label for="correctArticle">Yes</label><input type="radio" name="correctArticle" value="No"><label for="correctArticle">No</label></td>
+                                </tr>
+                                <tr class="dyArticle hide">
+                                  <td><label for="verifyArticle"> Did the engineer verify the content when linking it?</label> </td>
+                                </tr>
+                                <tr class="dyArticle hide">
+                                  <td><input type="radio" name="verifyArticle" value="Yes" ><label for="verifyArticle">Yes</label><input type="radio" name="verifyArticle" value="No"><label for="verifyArticle">No</label></td>
+                                </tr>
+                                <tr>
+                                  <td><label for="eraser">Was the ERASER method used in this case?</label> </td>
+                                </tr>
+                                <tr>
+                                  <td><input type="radio" name="eraser" value="Yes" required><label for="eraser" >Yes</label><input type="radio" name="eraser" value="No"><label for="eraser">No</label></td>
+                                </tr>
+                                <tr class="answerYes hide" >
+                                  <td><label for="effectively">Was the ERASER method used effectively?</label> </td>
+                                </tr>
+                                <tr class="answerYes hide">
+                                  <td><input type="radio" name="effectively" value="Yes" ><label for="effectively">Yes</label><input type="radio" name="effectively" value="No"><label for="effectively">No</label></td>
+                                </tr>
+                                <tr class="answerNo hide" >
+                                  <td><label for="doubt"> Should it have been used??</label> </td>
+                                </tr>
+                                <tr class="answerNo hide">
+                                  <td><input type="radio" name="doubt" value="Yes" ><label for="doubt">Yes</label><input type="radio" name="doubt" value="No"><label for="doubt">No</label></td>
+                                </tr>
+                              </tbody>
+                            </table>
+                            </fieldset>
+                            <fieldset >
+                              <table>
+                                <tr>
+                                  <td><label for="responsive">Was the engineer responsive to updates on the case?</label></td>
+                                </tr>
+                                <tr>
+                                  <td><input type="radio" name="responsive" value="1" required> <label for="responsive">1 - Poor response times and/or generally not responsive</label></td>
+                                </tr>
+                                <tr>
+                                  <td><input type="radio" name="responsive" value="2"><label for="responsive">2 - Good response yet customer had to repeatedly ask for updates</label></td>
+                                </tr>
+                                <tr>
+                                  <td><input type="radio" name="responsive" value="3"><label for="responsive">3 - Average response times (within 5 hours)</label></td>
+                                </tr>
+                                <tr>
+                                  <td><input type="radio" name="responsive" value="4"><label for="responsive">4 - Quick responses (<2 hours from customer comment)</label></td>
+                                </tr>
+                                <tr>
+                                  <td><input type="radio" name="responsive" value="5"><label for="responsive">5 - Proactively updating customer and giving thoughtful/thorough comments </label></td>
+                                </tr>
+                              </table>
+                            </fieldset>
+                            <fieldset class="lastSection">
+                              <table>
+                                <tr>
+                                  <td><label for="courtesy">Was the engineer courteous?</label></td>
+                                </tr>
+                                <tr>
+                                  <td><input type="radio" name="courtesy" value="Yes" required><label for="courtesy">Yes</label><input type="radio" name="courtesy" value="No"><label for="courtesy">No</label></td>
+                                </tr>
+                                <tr>
+                                  <td><label for="call">Could the case been resolved quicker if the engineer called the customer?</label></td>
+                                </tr>
+                                <tr>
+                                  <td><input type="radio" name="call" value="Yes" required><label for="call">Yes</label><input type="radio" name="call" value="No"><label for="call">No</label></td>
+                                </tr>
+                                <tr>
+                                  <td><label for="knowledgeable">Did they appear knowledgeable and helpful?</label></td>
+                                </tr>
+                                <tr>
+                                  <td><input type="radio" name="knowledgeable" value="Yes"><label for="knowledgeable">Yes</label><input type="radio" name="knowledgeable" value="No"><label for="knowledgeable">No</label></td>
+                                </tr>
+                                <tr>
+                                  <td><label for="overall">On a scale of 1-5, overall rating of the case?</label></td>
+                                </tr>
+                                <tr>
+                                  <td><input type="radio" name="overall" value="1" required><label for="overall">1</label><input type="radio" name="overall" value="2"><label for="overall">2</label> <input type="radio" name="overall" value="3"><label for="overall">3</label> <input type="radio" name="overall" value="4"><label for="overall">4</label> <input type="radio" name="overall" value="5"><label for="overall">5</label> </td>
+                                </tr>
+                              </table>
+
+
+                            </fieldset>
+                            <fieldset>
+                              <label for="why">Why?</label>
+                                <br> <textarea name="why" rows="4" cols="50" required></textarea>
+                            </fieldset>
+                            <fieldset>
+                              <label for="different">What would you have done differently?</label>
+                                <br> <textarea name="improve" rows="4" cols="50" required></textarea>
+                            </fieldset>
+
+
+                            <!-- <fieldset>
+                              <label for="doWell">What did the case owner do well?</label>
+                                <br> <textarea name="doWell" rows="2" cols="50" required></textarea>
+                            </fieldset>
+                            <fieldset>
+                              <label for="Improve">What can the case owner Improve on?</label>
+                                <br> <textarea name="improve" rows="2" cols="50" required></textarea>
+                            </fieldset>
+                            <fieldset>
+                              <label for="diff">What would you have done differently?</label>
+                                <br> <textarea name="diff" rows="2" cols="50" required></textarea>
+                            </fieldset>
+                            <fieldset>
+                              <label for="learn">What did you learn from reviewing the case?</label>
+                                <br> <textarea name="learn" rows="2" cols="50" required></textarea>
+                            </fieldset> -->
+                            <fieldset>
+                            <input type="hidden" name="Rname" value="{{agent}}" />
+                            <input type="hidden" name="Remail" value="{{email}}" />
+                            <input type="hidden" name="case" value="{{case}}" />
+                            </fieldset>
+                            <p>
+                              <button type="submit" id="submit_button" name="submit">Submit</button>
+                            </p>
+                          </form>
+                         </div>
+                         </center>
+                        </div>
+
+                    </center>
+
+
+
+    </script>
+
+
+    <!-- jQuery Version 1.11.1 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/appzen.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.js"></script>
+
+
+
+</body>
+
+
+</html>

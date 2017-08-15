@@ -82,6 +82,14 @@ body {
     margin-right: 15px;
 }
 
+.btn-fuller:link,
+.btn-fuller:visited {
+    background-color: ghostwhite color: #84C340;
+    border: 1px solid #84C340;
+    color: #fff;
+    margin-right: 5px;
+}
+
 .btn-ghost:link,
 .btn-ghost:visited {
     border: 1px solid #84C340;

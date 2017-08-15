@@ -74,6 +74,18 @@ body {
 
 }
 
+.btn1:link,
+.btn1:visited {
+    display: inline-block;
+    padding: 10px 30px;
+    font-weight: 300;
+    text-decoration: none;
+    border-radius: 200px;
+    width: 100px;
+    transition: background-color 0.2s, border 0.2s, color 0.2s;
+
+}
+
 .btn-full:link,
 .btn-full:visited {
     background-color: ghostwhite color: #84C340;
@@ -82,12 +94,12 @@ body {
     margin-right: 15px;
 }
 
-.btn-fuller:link,
-.btn-fuller:visited {
+.btn1-fuller:link,
+.btn1-fuller:visited {
     background-color: ghostwhite color: #84C340;
     border: 1px solid #84C340;
     color: #fff;
-    margin-right: 5px;
+    margin-right: 15px;
 }
 
 .btn-ghost:link,

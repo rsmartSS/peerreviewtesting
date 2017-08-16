@@ -16,9 +16,10 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="/resources/css/master.css">
+    <link rel="stylesheet" type="text/css" href="/public/resources/css/master.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -54,42 +55,42 @@
                         margin: 6px 0;
                         transition: 0.3s;
                         }
-
-                    .change .bar1 {
-                    -webkit-transform: rotate(-45deg) translate(-7px, 5px) ;
-                    transform: rotate(-45deg) translate(-7px, 5px) ;
-                    }
-
-                    .change .bar2 {opacity: 0;}
-
-                    .change .bar3 {
-                    -webkit-transform: rotate(45deg) translate(-6px, -7px) ;
-                    transform: rotate(45deg) translate(-6px, -7px) ;
-                    }
                 </style>
 </head>
 
 <body>
     <!-- Page Content -->
 <!-- menu button -->
-    <div onclick="myFunction(this)" style="position: absolute; padding-left: 5px">
+    <div style="position: absolute; padding-left: 5px" data-toggle="modal" data-target="#myModal">
         <div class="bar1"></div>
         <div class="bar2"></div>
         <div class="bar3"></div>
     </div>
-    
-<!-- function for first onlick of menu bar -->
-    <script>
-        function myFunction(x) {
-        x.classList.toggle("change");
-        }
-    </script>
+
+	<!-- Modal -->
+	<div class="modal left fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">Left Sidebar</h4>
+				</div>
+
+				<div class="modal-body">
+					<p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+					</p>
+				</div>
+
+			</div><!-- modal-content -->
+		</div><!-- modal-dialog -->
+	</div><!-- modal -->
     
     <div class="container">
 
         <div class="row">
             <div class="col-lg-12 text-center">
-              <img src="/resources/img/ss_logo_ps.png" alt="SharpSpring Logo" class="logo">
+              <img src="/public/resources/img/ss_logo_ps.png" alt="SharpSpring Logo" class="logo">
                 
             </div>
         </div>
@@ -121,11 +122,7 @@
         <div class="row">
           <div class="col-lg-12">
             <center>
-              <div class="chossen" id="output2">
-
-
-
-
+              <div class="chosen" id="output2">
 
                </div>
                </center>

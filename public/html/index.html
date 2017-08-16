@@ -25,6 +25,34 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <div>
+                <style>
+                    .container {
+                        display: inline-block;
+                        cursor: pointer;
+                        }
+
+                    .bar1, .bar2, .bar3 {
+                        width: 35px;
+                        height: 5px;
+                        background-color: #333;
+                        margin: 6px 0;
+                        transition: 0.4s;
+                        }
+
+                    .change .bar1 {
+                    -webkit-transform: rotate(-45deg) translate(-9px, 6px) ;
+                    transform: rotate(-45deg) translate(-9px, 6px) ;
+                    }
+
+                    .change .bar2 {opacity: 0;}
+
+                    .change .bar3 {
+                    -webkit-transform: rotate(45deg) translate(-8px, -8px) ;
+                    transform: rotate(45deg) translate(-8px, -8px) ;
+                    }
+                </style>
+            </div>
 </head>
 
 <body>
@@ -34,10 +62,19 @@
         <div class="row">
             <div class="col-lg-12 text-center">
               <img src="resources/img/ss_logo_ps.png" alt="SharpSpring Logo" class="logo">
-
-
             </div>
         </div>
+        <div class="container" onclick="myFunction(this)">
+  <div class="bar1"></div>
+  <div class="bar2"></div>
+  <div class="bar3"></div>
+</div>
+
+<script>
+function myFunction(x) {
+    x.classList.toggle("change");
+}
+</script>
         <!-- /.row -->
 
         <div class="row">
@@ -53,13 +90,13 @@
             </div>
           </div>
 <!-- The Modal -->
-<div id="myModal" class="modal">
+<!-- <div id="myModal" class="modal"> -->
 
   <!-- Modal content -->
-  <div class="modal-content">
+  <!--<div class="modal-content">
     <span class="close">&times;</span>
     <p>How does this work?</p>
-  </div>
+  </div> -->
 
 </div>
           <div class="col-lg-6 col-md-6">

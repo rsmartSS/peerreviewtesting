@@ -83,10 +83,11 @@ function errorHandler2(err){
 function zenCall(data){
     $("#loader").toggle(100)
     var allDat = data
+    console.log('here is alldat from zenCall', allDat);
     var source= $('#showTime').html();
     var template= Handlebars.compile(source);
     var caseArray = xpat(allDat)
-    console.log(caseArray);
+   // console.log(caseArray);
     var data ={
       case: caseArray
     }
@@ -103,6 +104,7 @@ function zenCall(data){
 function xpat(allDat){
    console.log('xpat is running and has data')
     var resp = allDat
+    console.log('here is resp from xpat', resp);
     var respLength = resp.results.length
     var caseIDArray = cycleThrough(resp)
 

@@ -10,6 +10,7 @@ const baseUrl = 'https://sharpspring.zendesk.com/api/v2/search.json/'
 var today = new Date();
 //Get Last Week's date, this takes care of all conditionals involving months
 var lastWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7);
+    console.log(lastWeek);
 var dd = today.getDate();
 var mm = today.getMonth() + 1; //January is 0!
 var yy = today.getFullYear();

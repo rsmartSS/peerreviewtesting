@@ -87,7 +87,7 @@ function zenCall(data){
     var source= $('#showTime').html();
     var template= Handlebars.compile(source);
     var caseArray = xpat(allDat)
-   // console.log(caseArray);
+    console.log('here is case array', caseArray);
     var data ={
       case: caseArray
     }

@@ -393,11 +393,19 @@ textarea, input{
 	.modal.right .modal-content {
 		height: 100%;
 		overflow-y: auto;
+        background-color: #4c4c4c;
+        color: white;
+        font-family: Lato:100,300,300i,400;
+        font-size: 13px;
+    
 	}
 	
 	.modal.left .modal-body,
 	.modal.right .modal-body {
 		padding: 15px 15px 80px;
+        font-weight: 100;
+        letter-spacing: 1px;
+        line-height: inherit;
 	}
 
 /*Left*/
@@ -419,6 +427,12 @@ textarea, input{
 	}
 
 	.modal-header {
-		border-bottom-color: #EEEEEE;
-		background-color: #FAFAFA;
+		border-bottom-color: #84C340;
+		background-color: #4c4c4c;
+        font: Lato;
 	}
+
+
+[aria-label] {
+color: black;
+}

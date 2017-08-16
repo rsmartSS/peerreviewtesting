@@ -55,6 +55,7 @@ function getTickets(){
           url: baseUrl,
     }
     var searchstr= JSON.stringify(search)
+    console.log(searchstr);
 
     $.ajax({
           type: 'post',

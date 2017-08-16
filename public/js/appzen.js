@@ -93,7 +93,7 @@ function zenCall(data){
     }
     var html = template(data);
 
-     console.log( 'zen call has comenced', allDat.results[0].id) for testing);
+    // console.log( 'zen call has comenced', allDat.results[0].id) for testing
     $('#output').html(html);
 
 };

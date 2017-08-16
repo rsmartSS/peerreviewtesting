@@ -55,7 +55,7 @@ function getTickets(){
           url: baseUrl,
     }
     var searchstr= JSON.stringify(search)
-    console.log(searchstr);
+    //console.log(searchstr);
 
     $.ajax({
           type: 'post',
@@ -83,7 +83,7 @@ function errorHandler2(err){
 function zenCall(data){
     $("#loader").toggle(100)
     var allDat = data
-    console.log('here is alldat from zenCall', allDat);
+   // console.log('here is alldat from zenCall', allDat);
     var source= $('#showTime').html();
     var template= Handlebars.compile(source);
     var caseArray = xpat(allDat)
@@ -93,7 +93,7 @@ function zenCall(data){
     }
     var html = template(data);
 
-    // console.log( 'zen call has comenced', allDat.results[0].id) for testing
+     console.log( 'zen call has comenced', allDat.results[0].id) for testing
     $('#output').html(html);
 
 };
@@ -103,11 +103,10 @@ function zenCall(data){
 //sorting function to grab 10 random cases. Break case loop out into its own function
 function xpat(allDat){
    console.log('xpat is running and has data')
-    var resp = allDat
-    console.log('here is resp from xpat', resp);
+    var resp = allDat;
     var respLength = resp.results.length
     var caseIDArray = cycleThrough(resp)
-
+    console.log(caseIDArray);
    return caseIDArray
 }
 

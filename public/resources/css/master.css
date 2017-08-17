@@ -432,7 +432,9 @@ textarea, input{
         font: Lato;
 	}
 
+/* bottom */
+
 
 [aria-label] {
-color: black;
+color: whitesmoke;
 }

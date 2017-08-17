@@ -10,9 +10,17 @@
     <meta name="author" content="">
 
     <title>**TEST**Peer Review**</title>
+    
+
+    <!-- Javascript -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    
     <link rel="icon" href="https://toolshed.sharpspring.com/includes/img/favicon-128.png?ver=5.75-1" type="image/gif">
 
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,300i,400" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
+    <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans: 600'>
 
     <!-- Bootstrap Core CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
@@ -22,7 +30,7 @@
     <script src="https://use.fontawesome.com/c678094f94.js"></script>
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="/resources/css/master.css">
+    <link rel="stylesheet" type="text/css" href="/public/resources/css/master.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -58,12 +66,38 @@
                         margin: 6px 0;
                         transition: 0.3s;
                         }
+                    
+                    .feedback-tab {
+                        position: absolute;
+                        right: 0;
+                        bottom: 0;
+                        background-color: #444;
+                        padding: 10px 14px 7px 15px;
+                        padding-right: 5px;
+                        cursor: pointer;
+                        z-index: 11;
+                        transform: rotate(deg);
+                        transform-origin: 14% 50% 0;
+                        letter-spacing: 0.5px;
+                        color: silver;
+                        text-align: center;
+                        font-family: Lato;
+                        font-size: 11px;
+                        box-shadow: -2px -1px 24px white;
+                    }
+                    
                 </style>
-</head>
 
 <body>
     <!-- Page Content -->
+    
+    <!-- Feedback tab -->
+    <div class="feedback-tab" data-direction="bottom">Feedback?</div>
+    
+    <!-- Instruction Question Mark -->
+    
     <i class="fa fa-question-circle-o" aria-hidden="true" style="position:absolute;padding-left:12px; color:white;font-size:24px;cursor:pointer; opacity: 0.7;" data-toggle="modal" data-target="#myModal"></i>
+    
 <!-- menu button -->
     <!-- <div style="position: absolute; padding-left: 5px" data-toggle="modal" data-target="#myModal">
         <div class="bar1"></div>
@@ -71,7 +105,7 @@
         <div class="bar3"></div>
     </div> -->
 
-	<!-- Modal -->
+	<!-- How-to Modal -->
 	<div class="modal left fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -82,7 +116,7 @@
 				</div>
 
 				<div class="modal-body">
-					<p>The Purpose of Peer Review: <br><br> Help fellow support engineers perfect their communication and troubleshooting craft while assisting in the enforcement of departmental initiatives. <br><br> The Process: <br>
+					<p>The Purpose of Peer Review:<br><br> Help fellow support engineers perfect their communication and troubleshooting craft while assisting in the enforcement of departmental initiatives. <br><br> The Process: <br>
 					</p>
                     <ol type="1">
                         <li>Click on the "Get Cases" button</li>
@@ -92,7 +126,7 @@
                         <li>Answer all questions and submit your review</li>
                         <li>The Support Engineer that was reviewed receives an email with an anonymous review</li>
                     </ol><br><br>
-                    <p style="font-weight: bold">Note:<br>
+                    <p style="font-weight: bold">Note:</p><br>
                         <p>Each Support Engineer is required to submit 5 peer reviews by the last day of each month.</p>
                     
 				</div>
@@ -105,7 +139,7 @@
 
         <div class="row">
             <div class="col-lg-12 text-center">
-              <img src="/resources/img/ss_logo_ps.png" alt="SharpSpring Logo" class="logo">
+              <img src="/public/resources/img/ss_logo_ps.png" alt="SharpSpring Logo" class="logo">
                 
             </div>
         </div>
@@ -159,7 +193,7 @@
         <h4 class="modal-title">Houston, we have a problem.</h4>
       </div>
       <div class="modal-body">
-        <p>Looks Like Zendesk is giving us the silent treatment. Please try agian later.</p>
+        <p>Looks Like Zendesk is giving us the silent treatment. Please try again later.</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
